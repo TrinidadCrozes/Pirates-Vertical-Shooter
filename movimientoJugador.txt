@@ -1,0 +1,10 @@
+Movimiento Jugador
+
+Si se aprieta la flecha izquierda
+	El jugador se desplaza a la izquierda
+
+Si se aprieta la tecla derecha
+	El jugador se desplaza a la derecha
+
+Si se aprieta la barra espaciadora 
+	El jugador dispara un misil sanitario
