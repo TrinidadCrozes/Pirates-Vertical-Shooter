@@ -1,0 +1,12 @@
+Mientras el infectado esté vivo
+
+	Desplazarse hacia abajo
+
+	Disparar un cañón	
+
+	Si llega hacia el final del mapa	
+		Volver hacia arriba
+
+Cuando deja de estar vivo y de forma aleatoria
+
+	Arrojar un premio cualquiera
