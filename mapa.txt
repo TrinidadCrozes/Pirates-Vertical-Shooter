@@ -1,10 +1,10 @@
 El mapa se maneja con un hilo.
 Es un JFrame.
-Cada personaje es un JLabel.
+Cada personaje en el mapa es un JLabel.
 Tiene una parte lógica y una gráfica.
-En la parte lógica hace todos los controles, y tiene las posiciones de cada objeto.
-El mapa controla: 
--sabe el nivel -> mayor nivel mayor cantidad de infectados.
--sabe que posición tiene cada objeto en el.
--manejamos las posiciones con coordenadas.
--todo el tiempo se va a ir fijando qué esta sucediendo y compara posiciones para ver las colisiones.
+LÓGICA:Se encarga de hacer todos los controles.
+Tiene las posiciones de cada objeto.
+Todo el tiempo se va a ir fijando qué esta sucediendo y compara posiciones para ver las colisiones.
+Sabe el nivel -> mayor nivel mayor cantidad de infectados.
+Manejamos las posiciones con coordenadas.
+Les asigna la posición en la que se deben generar los infectados.
