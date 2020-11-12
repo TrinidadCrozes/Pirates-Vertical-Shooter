@@ -1,8 +1,0 @@
-
-Mientras está vivo
-
-	Desplazarse hacia abajo
-	
-	Si llega hacia el final del mapa
-		
-		Volver hacia arriba
