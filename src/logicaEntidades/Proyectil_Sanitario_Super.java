@@ -5,7 +5,7 @@ import visitor.VisitorEntidad;
 /**
  * Clase que modela un proyectil del personaje principal mejorado.
  */
-public class Proyectil_Sanitario_Super extends Proyectil{
+public class Proyectil_Sanitario_Super extends Proyectil_Sanitario{
 	
 	/**
 	 * Constructor del proyectil mejorado del jugador principal.
