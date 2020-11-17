@@ -14,6 +14,10 @@ public abstract class Entidad {
 	
 	/**
 	 * Constructor de la entidad.
+	 * @param movimiento
+	 * @param grafica
+	 * @param visitor
+	 * @param velocidad
 	 */
 	public Entidad(Movimiento movimiento,EntidadGrafica grafica,VisitorEntidad visitor,int velocidad) {
 		this.movimiento = movimiento;
