@@ -1,5 +1,6 @@
 package logicaEntidades;
 
+import logicaEntidades.Movimiento.Movimiento;
 import visitor.VisitorEntidad;
 
 /**

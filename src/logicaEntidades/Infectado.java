@@ -1,9 +1,16 @@
 package logicaEntidades;
 
-public abstract class Infectado {
+import logicaEntidades.Movimiento.Movimiento;
+import visitor.VisitorEntidad;
 
-	public Infectado() {
-		Proyectil p = new Proyectil_Infectado();
-		super(0,p);
+//
+public abstract class Infectado extends Personaje  Thread {
+
+	public Infectado(Movimiento movimiento, EntidadGrafica grafica, VisitorEntidad visitor, int velocidad, Proyectil proyectil) {
+		super(movimiento, grafica, visitor, velocidad, proyectil);
+		
 	}
+	
+	
+	
 }
