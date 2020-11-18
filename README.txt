@@ -5,3 +5,6 @@ Yo no haría que extiendan a thread porque cada vez que crees un infectado va a 
 
 
 Otra cosa que nada que ver, las clases abstractas no tienen métodos abstractos, tendrían que tener?
+
+
+Visitor para todas las entidades es necesario? O podría haber solo para el jugador y los infectados? Ya que son los que interactúan con otras cosas.
