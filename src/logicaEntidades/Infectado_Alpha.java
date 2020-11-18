@@ -1,6 +1,6 @@
 package logicaEntidades;
 
-import logicaEntidades.Movimiento.Movimiento;
+import Movimiento.*;
 import visitor.VisitorEntidad;
 
 public class Infectado_Alpha extends Infectado{
