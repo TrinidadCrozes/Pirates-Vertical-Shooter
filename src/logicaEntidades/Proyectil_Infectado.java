@@ -1,23 +1,25 @@
 package logicaEntidades;
 
-import Movimiento.*;
-import visitor.VisitorEntidad;
+import visitor.*;
+
+import movimientoEntidades.*;
+import graficaEntidades.*;
 
 /**
  * Clase que modela un proyectil del enemigo.
  */
 public class Proyectil_Infectado extends Proyectil{
+	protected final int poderInfeccion = 10;
 	
 	/**
 	 * Constructor del proyectil del enemigo.
 	 * @param movimiento
 	 * @param grafica
 	 * @param visitor
-	 * @param velocidad
-	 * @param poder
 	 */
-	public Proyectil_Infectado(Movimiento movimiento,EntidadGrafica grafica,VisitorEntidad visitor,int velocidad,int poder) {
-		super(movimiento,grafica,visitor,velocidad,poder);
+	public Proyectil_Infectado(Movimiento movimiento,EntidadGrafica grafica,VisitorEntidad visitor) {
+		super(movimiento,grafica,visitor);
+		this.poder = poderInfeccion;
 	}
 	
 	/**
@@ -25,6 +27,6 @@ public class Proyectil_Infectado extends Proyectil{
 	 * @param v Visitor.
 	 */
 	public void visitar(VisitorEntidad v) {
-		v.visitProyectil_Infectado(this);
+		v.visit(this);
 	}
 }
