@@ -34,5 +34,10 @@ public class Movimiento_Enemigo_Mejorado extends Movimiento {
 	public void moverIzquierda() {
 		//No se mueve hacia la izquierda.
 	}
+	
+	@Override
+	public boolean puedeMoverse() {
+		return true;
+	}
 
 }
