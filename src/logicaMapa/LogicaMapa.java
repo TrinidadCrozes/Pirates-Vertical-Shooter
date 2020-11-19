@@ -15,8 +15,7 @@ public class LogicaMapa extends Thread {
 	protected Juego juego;
 	protected Personaje barco_pirata;
 	protected List<Infectado> barcos_infectados;
-	protected List<Entidad> objetos_a_agregar;
-	protected List<Entidad> objetos_a_eliminar;	
+	protected List<Entidad> objetos_en_el_mapa;	
 	
 	public LogicaMapa(Juego j) {
 		
