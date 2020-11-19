@@ -30,5 +30,10 @@ public class Movimiento_Premio extends Movimiento{
 	public void moverIzquierda() {
 		//No se mueve hacia la izquierda.
 	}
+	
+	@Override
+	public boolean puedeMoverse() {
+		return !(this.posicion.y == alturaFrame);
+	}
 
 }
