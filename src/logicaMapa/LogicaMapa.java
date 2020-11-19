@@ -15,8 +15,8 @@ public class LogicaMapa extends Thread {
 	protected Juego juego;
 	protected Personaje barco_pirata;
 	protected List<Infectado> barcos_infectados;
-	protected List<Premio> premios;
-	
+	protected List<Entidad> objetos_a_agregar;
+	protected List<Entidad> objetos_a_eliminar;	
 	
 	public LogicaMapa(Juego j) {
 		
@@ -26,6 +26,10 @@ public class LogicaMapa extends Thread {
 		
 	}	
 	
+	public void run() {
 	
+		
+		
+	}	
 
 }
