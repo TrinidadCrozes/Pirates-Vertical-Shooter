@@ -1,6 +1,4 @@
 package logicaEntidades;
-
-package logicaEntidades;
 import visitor.*;
 
 /**
@@ -10,20 +8,17 @@ public abstract class Entidad {
 	protected Movimiento movimiento;
 	protected EntidadGrafica grafica;
 	protected VisitorEntidad visitor;
-	protected int velocidad;
 	
 	/**
 	 * Constructor de la entidad.
 	 * @param movimiento
 	 * @param grafica
 	 * @param visitor
-	 * @param velocidad
 	 */
-	public Entidad(Movimiento movimiento,EntidadGrafica grafica,VisitorEntidad visitor,int velocidad) {
+	public Entidad(Movimiento movimiento,EntidadGrafica grafica,VisitorEntidad visitor) {
 		this.movimiento = movimiento;
 		this.grafica = grafica;
 		this.visitor = visitor;
-		this.velocidad = velocidad;
 	}
 	
 	/**
@@ -55,13 +50,5 @@ public abstract class Entidad {
 
 	public void setVisitor(VisitorEntidad visitor) {
 		this.visitor = visitor;
-	}
-
-	public int getVelocidad() {
-		return velocidad;
-	}
-
-	public void setVelocidad(int velocidad) {
-		this.velocidad = velocidad;
 	}	
 }
