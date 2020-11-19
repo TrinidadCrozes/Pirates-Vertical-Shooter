@@ -18,22 +18,27 @@ public abstract class Movimiento {
 	}
 	
 	/**
+	 * Desplaza la entidad.
+	 */
+	public abstract void desplazar();
+	
+	/**
 	 * Desplaza la entidad hacia arriba.
 	 */
-	public abstract void moverArriba();
+	private abstract void moverArriba();
 
 	/**
 	 * Desplaza la entidad hacia abajo.
 	 */
-	public abstract void moverAbajo();
+	private abstract void moverAbajo();
 
 	/**
 	 * Desplaza la entidad hacia la derecha.
 	 */
-	public abstract void moverDerecha();
+	private abstract void moverDerecha();
 
 	/**
 	 * Desplaza la entidad hacia la izquierda.
 	 */
-	public abstract void moverIzquierda();
+	private abstract void moverIzquierda();
 }
