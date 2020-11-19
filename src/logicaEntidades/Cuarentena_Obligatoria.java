@@ -1,6 +1,9 @@
 package logicaEntidades;
 
-import visitor.VisitorEntidad;
+import visitor.*;
+
+import movimientoEntidades.*;
+import graficaEntidades.*;
 
 /**
  * Clase que modela al premio cuarentena obligatoria.
@@ -14,8 +17,8 @@ public class Cuarentena_Obligatoria extends Efecto_Temporal {
 	 * @param visitor
 	 * @param velocidad
 	 */
-	public Cuarentena_Obligatoria(Movimiento movimiento,EntidadGrafica grafica,VisitorEntidad visitor,int velocidad) {
-		super(movimiento,grafica,visitor,velocidad);
+	public Cuarentena_Obligatoria(Movimiento movimiento,EntidadGrafica grafica,VisitorEntidad visitor) {
+		super(movimiento,grafica,visitor);
 	}
 	
 	/**
@@ -23,6 +26,7 @@ public class Cuarentena_Obligatoria extends Efecto_Temporal {
 	 * @param v Visitor.
 	 */
 	public void visitar(VisitorEntidad v) {
-		v.visitCuarentena_Obligatoria(this);
+		v.visit(this);
 	}
 }
+
