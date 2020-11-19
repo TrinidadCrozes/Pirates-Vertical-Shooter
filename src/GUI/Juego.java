@@ -46,7 +46,7 @@ public class Juego extends JFrame {
 	private void initGUI() {
   
 	  	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(450, 0, 450, 740);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -67,16 +67,5 @@ public class Juego extends JFrame {
 	private void startGame() {
 		
 	}
-	
-	/**
-	 * Indica si la entidad pasada como parámetro está dentro de la pantalla visible o no.
-	 * @param e Entidad.
-	 * @return boolean true si está fuera de pantalla, y false en caso contrario.
-	 */
-	public boolean estaFueraDePantalla(Entidad e) {
-		
-		boolean fueraDePantalla = true;
-		return fueraDePantalla;
-		
-	}
+
 }
