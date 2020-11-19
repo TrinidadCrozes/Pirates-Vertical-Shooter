@@ -4,6 +4,7 @@ package movimientoEntidades;
  * Clase que modela al movimiento de un enemigo.
  */
 public class Movimiento_Enemigo extends Movimiento {
+	protected boolean detenido = false;
 	
 	/**
 	 * Constructor del movimiento de un enemigo, se inicializa con la posición inicial del mismo.
@@ -18,9 +19,11 @@ public class Movimiento_Enemigo extends Movimiento {
 
 	@Override
 	public void desplazar() {
-		this.posicion.setLocation(this.posicion.x,this.posicion.y + velocidad);
-		if(this.posicion.y == alturaFrame) {
-			this.posicion.setLocation(this.posicion.x,0);
+		if(!detenido) {
+			this.posicion.setLocation(this.posicion.x,this.posicion.y + velocidad);
+			if(this.posicion.y == alturaFrame) {
+				this.posicion.setLocation(this.posicion.x,0);
+			}
 		}
 	}
 
@@ -33,10 +36,17 @@ public class Movimiento_Enemigo extends Movimiento {
 	public void moverIzquierda() {
 		//No se mueve hacia la izquierda.
 	}
-	
+
 	@Override
 	public boolean puedeMoverse() {
-		return true;
+		return !detenido;
+	}
+	
+	public void detener() {
+		detenido = true;
 	}
 
+	public void mover() {
+		detenido = false;
+	}
 }
