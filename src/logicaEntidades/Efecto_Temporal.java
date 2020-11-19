@@ -1,6 +1,9 @@
 package logicaEntidades;
 
-import visitor.VisitorEntidad;
+import visitor.*;
+
+import movimientoEntidades.*;
+import graficaEntidades.*;
 
 /**
  * Clase que modela al tipo de premio efecto temporal.
@@ -15,8 +18,8 @@ public abstract class Efecto_Temporal extends Premio{
 	 * @param visitor
 	 * @param velocidad
 	 */
-	public Efecto_Temporal(Movimiento movimiento,EntidadGrafica grafica,VisitorEntidad visitor,int velocidad) {
-		super(movimiento,grafica,visitor,velocidad);
+	public Efecto_Temporal(Movimiento movimiento,EntidadGrafica grafica,VisitorEntidad visitor) {
+		super(movimiento,grafica,visitor);
 	}
 	
 	/**
@@ -27,3 +30,4 @@ public abstract class Efecto_Temporal extends Premio{
 		return duracion;
 	}
 }
+
