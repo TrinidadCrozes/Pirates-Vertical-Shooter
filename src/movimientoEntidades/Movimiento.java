@@ -31,6 +31,12 @@ public abstract class Movimiento {
 	}
 	
 	/**
+	 * Analiza si la entidad aún puede desplazarse o alcanzó algún tipo de límite.
+	 * @return True si aún puede desplazarse, false en caso contrario.
+	 */
+	public abstract boolean puedeMoverse();
+	
+	/**
 	 * Desplaza la entidad.
 	 */
 	public abstract void desplazar();
