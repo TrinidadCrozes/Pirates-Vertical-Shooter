@@ -1,21 +1,28 @@
 package logicaEntidades;
 
-import visitor.VisitorEntidad;
+import visitor.*;
+
+import movimientoEntidades.*;
+import graficaEntidades.*;
 
 /**
  * Clase que modela la poción.
  */
 public class Pocion extends Objeto_Precioso{
-
+	protected final int vida = 40;
+	
 	/**
 	 * Constructor del premio.
 	 * @param movimiento
 	 * @param grafica
 	 * @param visitor
-	 * @param velocidad
 	 */
-	public Pocion(Movimiento movimiento,EntidadGrafica grafica,VisitorEntidad visitor,int velocidad) {
-		super(movimiento,grafica,visitor,velocidad);
+	public Pocion(Movimiento movimiento,EntidadGrafica grafica,VisitorEntidad visitor) {
+		super(movimiento,grafica,visitor);
+	}
+	
+	public int getVida() {
+		return vida;
 	}
 	
 	/**
@@ -23,6 +30,6 @@ public class Pocion extends Objeto_Precioso{
 	 * @param v Visitor.
 	 */
 	public void visitar(VisitorEntidad v) {
-		v.visitPocion(this);
+		v.visit(this);
 	}
 }
