@@ -1,5 +1,8 @@
-package logicaEntidades;
+package logicaEntidades; 
 import visitor.*;
+
+import movimientoEntidades.*;
+import graficaEntidades.*;
 
 /**
  * Clase que modela una entidad.
@@ -14,6 +17,7 @@ public abstract class Entidad {
 	 * @param movimiento
 	 * @param grafica
 	 * @param visitor
+	 * @param velocidad
 	 */
 	public Entidad(Movimiento movimiento,EntidadGrafica grafica,VisitorEntidad visitor) {
 		this.movimiento = movimiento;
@@ -50,5 +54,5 @@ public abstract class Entidad {
 
 	public void setVisitor(VisitorEntidad visitor) {
 		this.visitor = visitor;
-	}	
+	}
 }
