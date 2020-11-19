@@ -19,10 +19,7 @@ public class Movimiento_Proyectil_Enemigo extends Movimiento{
 		cantidadDesplazamientos = 0;
 	}
 	
-	/**
-	 * Si el misil ya se desplazo la cantidad máxima de lugares permitida, desaparece.
-	 * @return True si aún puede desplazarse, false en caso contrario.
-	 */
+	@Override
 	public boolean puedeMoverse() {
 		return !(cantidadDesplazamientos == cantidadDesplazamientosMax);
 	}
