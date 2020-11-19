@@ -10,14 +10,18 @@ public class Movimiento_Enemigo extends Movimiento {
 	 * @param x Coordenada x inicial de la entidad.
 	 * @param y Coordenada y inicial de la entidad.
 	 * @param velocidad Velocidad de movimiento de la entidad.
+	 * @param alturaFrame La altura del frame del juego.
 	 */
-	public Movimiento_Enemigo(int x, int y,int velocidad) {
-		super(x, y, velocidad);
+	public Movimiento_Enemigo(int x, int y,int velocidad,int alturaFrame) {
+		super(x, y, velocidad, alturaFrame);
 	}
 
 	@Override
 	public void desplazar() {
 		this.posicion.setLocation(this.posicion.x,this.posicion.y + velocidad);
+		if(this.posicion.y == alturaFrame) {
+			this.posicion.setLocation(this.posicion.x,0);
+		}
 	}
 
 	@Override
