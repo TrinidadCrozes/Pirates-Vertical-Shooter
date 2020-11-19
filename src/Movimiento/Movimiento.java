@@ -35,10 +35,10 @@ public abstract class Movimiento {
 	/**
 	 * Desplaza la entidad hacia la derecha.
 	 */
-	private abstract void moverDerecha();
+	public abstract void moverDerecha();
 
 	/**
 	 * Desplaza la entidad hacia la izquierda.
 	 */
-	private abstract void moverIzquierda();
+	public abstract void moverIzquierda();
 }
