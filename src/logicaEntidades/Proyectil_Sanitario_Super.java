@@ -1,22 +1,25 @@
 package logicaEntidades;
 
-import visitor.VisitorEntidad;
+import visitor.*;
+
+import movimientoEntidades.*;
+import graficaEntidades.*;
 
 /**
  * Clase que modela un proyectil del personaje principal mejorado.
  */
 public class Proyectil_Sanitario_Super extends Proyectil_Sanitario{
+	protected final int poderDesinfeccionSuper = 20;
 	
 	/**
 	 * Constructor del proyectil mejorado del jugador principal.
 	 * @param movimiento
 	 * @param grafica
 	 * @param visitor
-	 * @param velocidad
-	 * @param poder
 	 */
-	public Proyectil_Sanitario_Super(Movimiento movimiento,EntidadGrafica grafica,VisitorEntidad visitor,int velocidad,int poder) {
-		super(movimiento,grafica,visitor,velocidad,poder);
+	public Proyectil_Sanitario_Super(Movimiento movimiento,EntidadGrafica grafica,VisitorEntidad visitor) {
+		super(movimiento,grafica,visitor);
+		this.poder = poderDesinfeccionSuper;
 	}
 	
 	/**
@@ -24,6 +27,6 @@ public class Proyectil_Sanitario_Super extends Proyectil_Sanitario{
 	 * @param v Visitor.
 	 */
 	public void visitar(VisitorEntidad v) {
-		v.visitProyectil_Sanitario_Super(this);
+		v.visit(this);
 	}
 }
