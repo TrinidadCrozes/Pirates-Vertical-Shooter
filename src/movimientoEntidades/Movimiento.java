@@ -7,17 +7,27 @@ import java.awt.Point;
  */
 public abstract class Movimiento {
 	protected Point posicion;
-	protected int velocidad;
+	protected int velocidad,alturaFrame;
 	
 	/**
 	 * Constructor del movimiento de una entidad, se inicializa con la posición inicial de la misma.
 	 * @param x Coordenada x inicial de la entidad.
 	 * @param y Coordenada y inicial de la entidad.
 	 * @param velocidad Velocidad de movimiento de la entidad.
+	 * @param alturaFrame La altura del frame del juego.
 	 */
-	public Movimiento(int x,int y,int velocidad) {
+	public Movimiento(int x,int y,int velocidad,int alturaFrame) {
 		posicion = new Point(x,y);
 		this.velocidad = velocidad;
+		this.alturaFrame = alturaFrame;
+	}
+	
+	/**
+	 * Devuelve la posición de la entidad.
+	 * @return Posición de la entidad.
+	 */
+	public Point getPosicion() {
+		return posicion;
 	}
 	
 	/**
@@ -35,4 +45,3 @@ public abstract class Movimiento {
 	 */
 	public abstract void moverIzquierda();
 }
-
