@@ -79,5 +79,4 @@ public class Juego extends JFrame {
 		return fueraDePantalla;
 		
 	}
-
 }
