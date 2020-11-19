@@ -1,6 +1,9 @@
 package logicaEntidades;
 
-import visitor.VisitorEntidad;
+import visitor.*;
+
+import movimientoEntidades.*;
+import graficaEntidades.*;
 
 /**
  * Clase que modela el tipo de premio objeto precioso.
@@ -12,9 +15,8 @@ public abstract class Objeto_Precioso extends Premio{
 	 * @param movimiento
 	 * @param grafica
 	 * @param visitor
-	 * @param velocidad
 	 */
-	public Objeto_Precioso(Movimiento movimiento,EntidadGrafica grafica,VisitorEntidad visitor,int velocidad) {
-		super(movimiento,grafica,visitor,velocidad);
+	public Objeto_Precioso(Movimiento movimiento,EntidadGrafica grafica,VisitorEntidad visitor) {
+		super(movimiento,grafica,visitor);
 	}
 }
