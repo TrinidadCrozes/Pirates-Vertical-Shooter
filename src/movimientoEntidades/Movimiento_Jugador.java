@@ -30,6 +30,11 @@ public class Movimiento_Jugador extends Movimiento{
 	public void moverIzquierda() {
 		this.posicion.setLocation(this.posicion.x - velocidad,this.posicion.y);
 	}
+	
+	@Override
+	public boolean puedeMoverse() {
+		return true;
+	}
 
 }
 
