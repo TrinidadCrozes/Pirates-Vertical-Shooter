@@ -3,7 +3,7 @@ package movimientoEntidades;
 /**
  * Clase que modela al movimiento de un enemigo.
  */
-public class Movimiento_Enemigo_Mejorado extends Movimiento {
+public class Movimiento_Enemigo_Mejorado extends Movimiento_Enemigo {
 	protected final double extra = 0.5;
 	
 	/**
@@ -19,9 +19,11 @@ public class Movimiento_Enemigo_Mejorado extends Movimiento {
 
 	@Override
 	public void desplazar() {
-		this.posicion.setLocation(this.posicion.x,this.posicion.y + velocidad + extra);
-		if(this.posicion.y == alturaFrame) {
-			this.posicion.setLocation(this.posicion.x,0);
+		if(puedeMoverse()) {
+			this.posicion.setLocation(this.posicion.x,this.posicion.y + velocidad + extra);
+			if(this.posicion.y == alturaFrame) {
+				this.posicion.setLocation(this.posicion.x,0);
+			}
 		}
 	}
 
@@ -34,7 +36,7 @@ public class Movimiento_Enemigo_Mejorado extends Movimiento {
 	public void moverIzquierda() {
 		//No se mueve hacia la izquierda.
 	}
-	
+
 	@Override
 	public boolean puedeMoverse() {
 		return true;
