@@ -1,12 +1,14 @@
 package logicaEntidades;
 
 import visitor.VisitorEntidad;
+import movimientoEntidades.*;
+import graficaEntidades.*; 
 
 /**
  * Clase que modela al personaje principal.
  *
  */
-public class Jugador {
+public class Jugador extends Personaje{
 	private static Jugador jugador;
 	
 	/**
@@ -14,11 +16,10 @@ public class Jugador {
 	 * @param movimiento
 	 * @param grafica
 	 * @param visitor
-	 * @param velocidad
 	 * @param proyectil
 	 */
-	private Jugador(Movimiento movimiento,EntidadGrafica grafica,VisitorEntidad visitor,int velocidad,Proyectil proyectil) {
-		super(movimiento,grafica,visitor,velocidad,proyectil);
+	private Jugador(Movimiento movimiento,EntidadGrafica grafica,VisitorEntidad visitor,Proyectil proyectil) {
+		super(movimiento,grafica,visitor,proyectil); 
 	}
 	
 	/**
@@ -32,9 +33,16 @@ public class Jugador {
 	 */
 	public static Jugador getJugador(Movimiento movimiento,EntidadGrafica grafica,VisitorEntidad visitor,int velocidad,Proyectil proyectil) {
 		if(jugador == null) {
-			jugador = new Jugador(movimiento,grafica,visitor,velocidad,proyectil);
+			jugador = new Jugador(movimiento,grafica,visitor,proyectil);
 		}
 		return jugador;
+	}
+	
+	public void rellenarVida(int v) {
+		this.vida = this.vida + v;
+		if(this.vida > this.vidaMax) {
+			this.vida = this.vidaMax;
+		}
 	}
 	
 	/**
@@ -42,6 +50,6 @@ public class Jugador {
 	 * @param v Visitor.
 	 */
 	public void visitar(VisitorEntidad v) {
-		v.visitJugador(this);
+		v.visit(this);
 	}
 }
