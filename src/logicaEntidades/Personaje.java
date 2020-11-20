@@ -1,8 +1,6 @@
 package logicaEntidades;
 
-import visitor.*;
 import movimientoEntidades.*;
-import graficaEntidades.*;
 
 /**
  * Clase que modela un personaje.
@@ -14,33 +12,51 @@ public abstract class Personaje extends Entidad {
 
 	/**
 	 * Constructor del personaje.
-	 * @param movimiento
-	 * @param grafica
-	 * @param visitor
-	 * @param proyectil
+	 * @param movimiento Movimiento del personaje.
+	 * @param proyectil Proyectil del personaje.
 	 */
-	public Personaje(Movimiento movimiento,EntidadGrafica grafica,VisitorEntidad visitor,Proyectil proyectil) {
-		super(movimiento,grafica,visitor);
+	public Personaje(Movimiento movimiento,Proyectil proyectil) {
+		super(movimiento);
 		this.proyectil = proyectil;
 		this.vida = this.vidaMax;
 	}
-
+	
+	/**
+	 * Retorna el proyectil del personaje.
+	 * @return Proyectil del personaje.
+	 */
 	public Proyectil getProyectil() {
 		return proyectil;
 	}
-
+	
+	/**
+	 * Obtiene el proyectil del personaje.
+	 * @param proyectil Proyectil del personaje.
+	 */
 	public void setProyectil(Proyectil proyectil) {
 		this.proyectil = proyectil;
 	}
-
+	
+	/**
+	 * Retorna la vida del personaje.
+	 * @return Vida.
+	 */
 	public int getVida() {
 		return vida;
 	}
 	
+	/**
+	 * Retorna la vida máxima del personaje.
+	 * @return Vida máxima.
+	 */
 	public int getVidaMax() {
 		return vidaMax;
 	}
-
+	
+	/**
+	 * Resta al personaje la vida indicada.
+	 * @param v Vida a restar.
+	 */
 	public void quitarVida(int v) {
 		this.vida = this.vida - v;
 		if(this.vida < 0) {
