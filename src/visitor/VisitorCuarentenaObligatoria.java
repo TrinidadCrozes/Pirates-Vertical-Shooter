@@ -26,9 +26,7 @@ public class VisitorCuarentenaObligatoria implements VisitorEntidad{
 
 	@Override
 	public void visit(Jugador j) {
-		//Le digo al jugador que cambie de arma
-		//Pasa el tiempo que dice co.
-		//Le devuelvo al jugador su arma anterior.
+		j.getJuego().detenerEnemigos(co.getDuracion());
 	}
 
 	@Override
@@ -79,3 +77,4 @@ public class VisitorCuarentenaObligatoria implements VisitorEntidad{
 		
 	}
 }
+
