@@ -1,9 +1,6 @@
 package logicaEntidades;
-
-import visitor.*;
-
 import movimientoEntidades.*;
-import graficaEntidades.*;
+
 
 /**
  * Clase que modela un proyectil.
@@ -14,26 +11,39 @@ public abstract class Proyectil extends Entidad {
 	
 	/**
 	 * Constructor del proyectil.
-	 * @param movimiento
-	 * @param grafica
-	 * @param visitor
+	 * @param movimiento Movimiento del proyectil.
 	 */
-	public Proyectil(Movimiento movimiento,EntidadGrafica grafica,VisitorEntidad visitor) {
-		super(movimiento,grafica,visitor);
+	public Proyectil(Movimiento movimiento) {
+		super(movimiento);
 	}
-
+	
+	/**
+	 * Retorna el poder del proyectil.
+	 * @return Poder del proyectil.
+	 */
 	public int getPoder() {
 		return poder;
 	}
-
+	
+	/**
+	 * Obtiene el poder del proyectil.
+	 * @param poder Poder del proyectil.
+	 */
 	public void setPoder(int poder) {
 		this.poder = poder;
 	}
 	
+	/**
+	 * Analiza si el proyectil ha colisionado contra algo.
+	 * @return True si colisiono, false en caso contrario.
+	 */
 	public boolean Colisiono() {
 		return colisiono;
 	}
-
+	
+	/**
+	 * Avisa al proyectil que colisiono.
+	 */
 	public void haColisionado() {
 		this.colisiono = true;
 	}
