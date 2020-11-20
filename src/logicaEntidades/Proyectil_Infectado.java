@@ -10,16 +10,18 @@ import graficaEntidades.*;
  */
 public class Proyectil_Infectado extends Proyectil{
 	protected final int poderInfeccion = 10;
+	protected VisitorEntidad visitor;
+	protected EntidadGrafica grafica;
 	
 	/**
-	 * Constructor del proyectil del enemigo.
-	 * @param movimiento
-	 * @param grafica
-	 * @param visitor
+	 * Constructor del proyectil infectado.
+	 * @param movimiento Movimiento del proyectil infectado.
 	 */
-	public Proyectil_Infectado(Movimiento movimiento,EntidadGrafica grafica,VisitorEntidad visitor) {
-		super(movimiento,grafica,visitor);
+	public Proyectil_Infectado(Movimiento movimiento) {
+		super(movimiento);
 		this.poder = poderInfeccion;
+		this.visitor = new VisitorProyectilEnemigo(this);
+		this.grafica = new EntidadGrafica_Proyectil_Infectado();
 	}
 	
 	/**
