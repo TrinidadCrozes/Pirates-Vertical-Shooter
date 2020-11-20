@@ -10,16 +10,18 @@ import graficaEntidades.*;
  */
 public class Proyectil_Sanitario_Super extends Proyectil_Sanitario{
 	protected final int poderDesinfeccionSuper = 20;
+	protected VisitorEntidad visitor;
+	protected EntidadGrafica grafica;
 	
 	/**
-	 * Constructor del proyectil mejorado del jugador principal.
-	 * @param movimiento
-	 * @param grafica
-	 * @param visitor
+	 * Constructor del proyectil mejorado del jugador.
+	 * @param movimiento Movimiento del proyectil del jugador.
 	 */
-	public Proyectil_Sanitario_Super(Movimiento movimiento,EntidadGrafica grafica,VisitorEntidad visitor) {
-		super(movimiento,grafica,visitor);
+	public Proyectil_Sanitario_Super(Movimiento movimiento) {
+		super(movimiento);
 		this.poder = poderDesinfeccionSuper;
+		this.visitor = new VisitorProyectilSanitarioSuper(this);
+		this.grafica = new EntidadGrafica_Proyectil_Sanitario_Super();
 	}
 	
 	/**
