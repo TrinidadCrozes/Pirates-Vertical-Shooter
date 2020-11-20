@@ -10,18 +10,19 @@ import graficaEntidades.*;
  */
 public class Infectado_Alpha extends Infectado{
 	protected final int damageAlpha = 15;
+	protected VisitorEntidad visitor;
+	protected EntidadGrafica grafica;
 	
 	/**
-	 * Constructor del enemigo.
-	 * @param movimiento
-	 * @param grafica
-	 * @param visitor
-	 * @param velocidad
-	 * @param proyectil
+	 * Constructor del enemigo alpha.
+	 * @param movimiento Movimiento del enemigo.
+	 * @param proyectil Proyectil del enemigo.
 	 */
-	public Infectado_Alpha(Movimiento movimiento, EntidadGrafica grafica, VisitorEntidad visitor, Proyectil proyectil) {
-		super(movimiento, grafica, visitor, proyectil);
+	public Infectado_Alpha(Movimiento movimiento,Proyectil proyectil) {
+		super(movimiento, proyectil);
 		this.damageFisico = damageAlpha;
+		this.visitor = new VisitorEnemigoAlpha(this);
+		this.grafica = new EntidadGrafica_Enemigo_Alpha();
 	}
 	
 	/**
