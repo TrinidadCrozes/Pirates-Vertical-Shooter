@@ -1,17 +1,17 @@
 package Fabrica;
 
 import logicaEntidades.Infectado;
-import logicaMapa.LogicaMapa;
+import logicaJuego.Juego;
 
 public abstract class FabricaInfectado {
-	protected Infectado infectado;
-	protected LogicaMapa mapa;
+	protected Juego juego;
 	
-	public FabricaInfectado (LogicaMapa mapa) {
-		this.mapa = mapa;
+	public FabricaInfectado(Juego juego) {
+		this.juego = juego;
 	}
 	
 	public abstract Infectado crearInfectado();
+	
 	
 	
 	
