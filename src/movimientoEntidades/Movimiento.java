@@ -51,3 +51,4 @@ public abstract class Movimiento {
 	 */
 	public abstract void moverIzquierda();
 }
+
