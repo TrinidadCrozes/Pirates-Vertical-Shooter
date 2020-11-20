@@ -8,3 +8,7 @@ graficaEntidades: todo auxiliar para que los constructores de las entidades no t
 Metodo que encontre leyendo los metodos de la clase: etiqueta.getBounds().intersects(otraetiqueta.getBounds()); <--- asi controlemos las colisiones
 
 visitor: cambié el visitor de los premios temporales, lo que dije de la clase juego también se aplica acá.
+
+carpeta fabrica: crea los distintos infectados, falta clase para los Beta
+
+clase Juego: no compila porque faltan metodos, pero por si lo quieren leer, tiene muchos comentarios. Obvio pueden agregar lo que les guste
