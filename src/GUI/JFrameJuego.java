@@ -9,7 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import logicaEntidades.Entidad;
 
-public class Juego extends JFrame {
+public class JFrameJuego extends JFrame {
 
 	private JPanel contentPane;
 
@@ -32,7 +32,7 @@ public class Juego extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Juego() {
+	public JFrameJuego() {
 		
 		initGUI();
 		initGame();
