@@ -10,17 +10,23 @@ import graficaEntidades.*;
  */
 public class Pocion extends Objeto_Precioso{
 	protected final int vida = 40;
+	protected VisitorEntidad visitor;
+	protected EntidadGrafica grafica;
 	
 	/**
-	 * Constructor del premio.
-	 * @param movimiento
-	 * @param grafica
-	 * @param visitor
+	 * Constructor de la poción.
+	 * @param movimiento Movimiento de la poción.
 	 */
-	public Pocion(Movimiento movimiento,EntidadGrafica grafica,VisitorEntidad visitor) {
-		super(movimiento,grafica,visitor);
+	public Pocion(Movimiento movimiento) {
+		super(movimiento);
+		this.visitor = new VisitorPocion(this);
+		this.grafica = new EntidadGrafica_Pocion();
 	}
 	
+	/**
+	 * Retorna la vida que suma consumir la poción.
+	 * @return Vida.
+	 */
 	public int getVida() {
 		return vida;
 	}
@@ -33,3 +39,4 @@ public class Pocion extends Objeto_Precioso{
 		v.visit(this);
 	}
 }
+
