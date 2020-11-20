@@ -27,9 +27,7 @@ public class VisitorSuperArmaSanitaria implements VisitorEntidad {
 
 	@Override
 	public void visit(Jugador j) {
-		//Detengo a los enemigos.
-		//Pasa el tiempo que dice sa.
-		//Hago que los enemigos se vuelvan a mover.
+		j.getJuego().cambiarArmaJugador(sa.getDuracion());
 	}
 
 	@Override
@@ -80,3 +78,4 @@ public class VisitorSuperArmaSanitaria implements VisitorEntidad {
 		
 	}
 }
+
