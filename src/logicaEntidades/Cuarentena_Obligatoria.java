@@ -1,24 +1,25 @@
 package logicaEntidades;
 
 import visitor.*;
-
+import graficaEntidades.EntidadGrafica;
+import graficaEntidades.EntidadGrafica_CuarentenaObligatoria;
 import movimientoEntidades.*;
-import graficaEntidades.*;
 
 /**
  * Clase que modela al premio cuarentena obligatoria.
  */
 public class Cuarentena_Obligatoria extends Efecto_Temporal {
-
+	protected VisitorEntidad visitor;
+	protected EntidadGrafica grafica;
+	
 	/**
-	 * Constructor del premio.
-	 * @param movimiento
-	 * @param grafica
-	 * @param visitor
-	 * @param velocidad
+	 * Constructor del premio cuarentena obligatoria. 
+	 * @param movimiento Movimiento del premio.
 	 */
-	public Cuarentena_Obligatoria(Movimiento movimiento,EntidadGrafica grafica,VisitorEntidad visitor) {
-		super(movimiento,grafica,visitor);
+	public Cuarentena_Obligatoria(Movimiento movimiento) {
+		super(movimiento);
+		this.visitor = new VisitorCuarentenaObligatoria(this);
+		this.grafica = new EntidadGrafica_CuarentenaObligatoria();
 	}
 	
 	/**
@@ -29,4 +30,5 @@ public class Cuarentena_Obligatoria extends Efecto_Temporal {
 		v.visit(this);
 	}
 }
+
 
