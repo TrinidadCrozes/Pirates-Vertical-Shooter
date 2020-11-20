@@ -1,9 +1,9 @@
 package logicaEntidades;
 
-import visitor.*;
+
 
 import movimientoEntidades.*;
-import graficaEntidades.*;
+
 
 /**
  * Clase que modela un premio.
@@ -13,18 +13,23 @@ public abstract class Premio extends Entidad {
 	
 	/**
 	 * Constructor del premio.
-	 * @param movimiento
-	 * @param grafica
-	 * @param visitor
+	 * @param movimiento Movimiento del premio.
 	 */
-	public Premio(Movimiento movimiento,EntidadGrafica grafica,VisitorEntidad visitor) {
-		super(movimiento,grafica,visitor);
+	public Premio(Movimiento movimiento) {
+		super(movimiento);
 	}
-
+	
+	/**
+	 * Analiza si el premio ha colisionado contra algo.
+	 * @return True si colisiono, false en caso contrario.
+	 */
 	public boolean Colisiono() {
 		return colisiono;
 	}
-
+	
+	/**
+	 * Avisa al premio que colisiono.
+	 */
 	public void haColisionado() {
 		this.colisiono = true;
 	}
