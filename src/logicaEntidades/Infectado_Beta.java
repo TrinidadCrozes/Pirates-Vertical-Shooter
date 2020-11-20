@@ -10,18 +10,20 @@ import graficaEntidades.*;
 public class Infectado_Beta extends Infectado{
 	protected final int damageBeta = 10;
 	protected final int vidaBeta = 120;
+	protected VisitorEntidad visitor;
+	protected EntidadGrafica grafica;
 	
 	/**
-	 * Constructor del enemigo.
-	 * @param movimiento
-	 * @param grafica
-	 * @param visitor
-	 * @param proyectil
+	 * Constructor del enemigo beta.
+	 * @param movimiento Movimiento del enemigo beta.
+	 * @param proyectil Proyectil del enemigo beta.
 	 */
-	public Infectado_Beta(Movimiento movimiento, EntidadGrafica grafica, VisitorEntidad visitor, Proyectil proyectil) {
-		super(movimiento, grafica, visitor, proyectil);
+	public Infectado_Beta(Movimiento movimiento, Proyectil proyectil) {
+		super(movimiento, proyectil);
 		this.damageFisico = this.damageBeta;
 		this.vida = this.vidaBeta;
+		this.visitor = new VisitorEnemigoBeta(this);
+		this.grafica = new EntidadGrafica_Enemigo_Beta();
 	}
 	
 	public int getVidaMax() {
