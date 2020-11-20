@@ -1,8 +1,8 @@
 package logicaEntidades;
-import visitor.*;
+
 
 import movimientoEntidades.*;
-import graficaEntidades.*;
+
 /**
  * Clase que modela un enemigo.
  */
@@ -10,14 +10,12 @@ public abstract class Infectado extends Personaje{
 	protected int damageFisico;
 	
 	/**
-	 * Constructor del enemigo.
-	 * @param movimiento
-	 * @param grafica
-	 * @param visitor
-	 * @param proyectil
+	 * Constructor del infectado.
+	 * @param movimiento Movimiento del infectado.
+	 * @param proyectil Proyectil del infectado.
 	 */
-	public Infectado(Movimiento movimiento, EntidadGrafica grafica, VisitorEntidad visitor, Proyectil proyectil) {
-		super(movimiento, grafica, visitor, proyectil);
+	public Infectado(Movimiento movimiento,Proyectil proyectil) {
+		super(movimiento, proyectil);
 	}
 	
 	/**
