@@ -15,4 +15,4 @@ deje subida en el main una clase que es un jpanel con una imagen de fondo, super
 
 Cambié el nombre de la clase LogicaMapa por Juego. Lo puse en un package logicaJuego junto con lo de los niveles(que solo hice la clase abstracta nivel con los métodos que fui
 necesitando).
-
+No estoy segura de cómo crear el movimiento del proyectil del jugador, tipo que posiciones ponerle, xq como que la posicion inicial tendria que estar relacionado con la relacion del jugador.
