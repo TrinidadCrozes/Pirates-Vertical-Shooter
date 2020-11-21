@@ -14,3 +14,7 @@ carpeta fabrica: crea los distintos infectados, falta clase para los Beta
 clase Juego: no compila porque faltan metodos, pero por si lo quieren leer, tiene muchos comentarios. Obvio pueden agregar lo que les guste
 
 deje subida en el main una clase que es un jpanel con una imagen de fondo, super basica, pero para no hacerla desde cero. es lo mismo si se quiere usar un GIF
+
+Cambié el nombre de la clase LogicaMapa por Juego. Lo puse en un package logicaJuego junto con lo de los niveles(que solo hice la clase abstracta nivel con los métodos que fui
+necesitando).
+Cuando uso las Fabricas alpha y beta para crear infectados me marca error diciendo que tendría que cambiar a static los métodos de crear infectado, pero si lo hago me marca otros errores, asique ni idea.
