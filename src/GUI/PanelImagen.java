@@ -25,9 +25,9 @@ public class PanelImagen extends JPanel {
 	 * Metodo que configura el estado interno del panel con imagen. 
 	 */
 	public void paint(Graphics g) {
-		Dimension tamaño = getSize();
+		Dimension tamaÃ±o = getSize();
 		imagen = new ImageIcon(getClass().getResource(nombre));
-		g.drawImage(imagen.getImage(), 0, 0, tamaño.width, tamaño.height, null);
+		g.drawImage(imagen.getImage(), 0, 0, tamaÃ±o.width, tamaÃ±o.height, this);
 		setOpaque(false);
 		super.paintComponent(g);
 	}
