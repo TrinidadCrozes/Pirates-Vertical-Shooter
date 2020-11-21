@@ -1,53 +1,100 @@
 package logicaJuego;
 
+import logicaEntidades.*;
+
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
-import graficaEntidades.EntidadGrafica;
-import logicaEntidades.Entidad;
-import logicaEntidades.Jugador;
-import movimientoEntidades.Movimiento;
-import visitor.*;
+import Fabrica.*;
+import GUI.JFrameJuego;
 
-//El nivel se tendria que encargar de agregar a la lista a recorrer a los enemigos
-public class Juego {
-	protected GUI.Juego gui;
-	protected List<Entidad> entidadesLista;
+import java.lang.Thread;
+import java.awt.Point;
 
-	protected Jugador jugador;
-	protected Movimiento movimiento;
-	protected EntidadGrafica grafica;
-	protected VisitorJugador visitor;
+/**
+ * Clase que implementa la lógica del juego.
+ */
+public class Juego extends Thread {
 	
-	public Juego() {
-		entidadesLista = new LinkedList<Entidad>();
-		//Lo primero seria crear el personaje principal, (ACOMODAR PARAMETROS)
-		jugador = new Jugador(null, null, null, null);
-		entidadesLista.add(jugador);
+	protected JFrameJuego gui_juego;
+	protected Jugador barco_pirata;
+	protected List<Infectado> barcos_enemigos;
+	protected List<Entidad> objetos_en_el_mapa;
+	protected Nivel nivel;
+	
+	/**
+	 * Inicializa la lógica del juego con los elementos que contendrá el mapa.
+	 * @param j JFrameJuego.
+	 */
+	public Juego(JFrameJuego j) {
 		
-		//Aca pondriamos que empieza desde el nivel 1 por ejemplo y 
-		//configuraciones de como tiene que arrancar el mapa, personajes, etc
+		this.gui_juego = j;
+		this.barco_pirata = Jugador.getJugador(null, null, null);
+		this.barcos_enemigos = new LinkedList<Infectado>();		
+		for(int i = 0; i < nivel.getCantidadEnemigosAlpha(); i++) {
+			Infectado inf = FabricaAlpha.crearInfectado();
+			barcos_enemigos.add(inf);
+		}
+		for(int i = 0; i < nivel.getCantidadEnemigosBeta(); i++) {
+			Infectado inf = FabricaBeta.crearInfectado();
+			barcos_enemigos.add(inf);
+		}
+		this.objetos_en_el_mapa = new LinkedList<Entidad>();
 		
 	}
 	
+	@Override
+	public void run() {
+		
+		
+		
+	}
 	
-	
-	//Recorreria toda la lista de entidades y le indicaria a cada uno 
-	//lo que tiene que hacer
-	public void actualizar() {
-		for (Entidad e: entidadesLista) {
-			 //e.accionar(); cada entidad sabe como actuar
-			
-			//Si esta muerto, lo saco de la lista para que no lo vuelva a accionar
-			if (e.obtenerVida() <= 0) {
-				entidadesLista.remove(e);
-			}
-			
-			
+	/**
+	 * 
+	 */
+	public void agregarEnemigo() {
+		
+		Point ubicacion;
+		Random rnd = new Random(0);
+		int pos_x;
+		int pos_lista_enemigo;
+				
+		if (barcos_enemigos != null) {
+			pos_x = rnd.nextInt(gui_juego.getWidth()); 
+			pos_lista_enemigo = rnd.nextInt(barcos_enemigos.size()-1);
+			ubicacion = new Point(pos_x, 0);
+			objetos_en_el_mapa.add(barcos_enemigos.get(pos_lista_enemigo));
+			barcos_enemigos.remove(pos_lista_enemigo);
+			gui_juego.agregarEnemigo(ubicacion);
 		}
 		
+	}
+	
+	/**
+	 * 
+	 * @param e
+	 */
+	public void insertarObjeto(Entidad e) {
+		
+		
+		
+	}
+	
+	/**
+	 * 
+	 * @param e
+	 */
+	public void eliminarObjeto(Entidad e) {
+		
+		if( objetos_en_el_mapa.contains(e) ) {
+			objetos_en_el_mapa.remove(e);
+		}			
 		
 	}
 	
 	
+		
+
 }
