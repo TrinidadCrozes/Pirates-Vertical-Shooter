@@ -15,4 +15,4 @@ deje subida en el main una clase que es un jpanel con una imagen de fondo, super
 
 Cambié el nombre de la clase LogicaMapa por Juego. Lo puse en un package logicaJuego junto con lo de los niveles(que solo hice la clase abstracta nivel con los métodos que fui
 necesitando).
-Cuando uso las Fabricas alpha y beta para crear infectados me marca error diciendo que tendría que cambiar a static los métodos de crear infectado, pero si lo hago me marca otros errores, asique ni idea.
+
