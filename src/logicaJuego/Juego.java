@@ -94,7 +94,23 @@ public class Juego extends Thread {
 		
 	}
 	
-	
+	public void detenerEnemigos(int duracion) {
+		
+
+		
+	}
+
+	public void cambiarArmaJugador(int duracion) {
+				
+		
+		
+	}
+
+	public Jugador getJugador() {
+		
+		return barco_pirata;
+		
+	}
 		
 
 }
