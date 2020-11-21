@@ -12,3 +12,5 @@ visitor: cambié el visitor de los premios temporales, lo que dije de la clase j
 carpeta fabrica: crea los distintos infectados, falta clase para los Beta
 
 clase Juego: no compila porque faltan metodos, pero por si lo quieren leer, tiene muchos comentarios. Obvio pueden agregar lo que les guste
+
+deje subida en el main una clase que es un jpanel con una imagen de fondo, super basica, pero para no hacerla desde cero. es lo mismo si se quiere usar un GIF
