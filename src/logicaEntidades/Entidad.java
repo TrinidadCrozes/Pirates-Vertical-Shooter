@@ -39,8 +39,5 @@ public abstract class Entidad {
 		this.movimiento = movimiento;
 	}
 	
-	public EntidadGrafica getEntidadGrafica() {
-		return this.getEntidadGrafica();
-	}
 	
 }
