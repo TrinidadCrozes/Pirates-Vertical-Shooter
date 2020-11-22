@@ -13,5 +13,10 @@ public class EntidadGrafica_Proyectil_Infectado extends EntidadGrafica{
 		redimensionar(this.etiqueta,imageIcon);
 		this.etiqueta.setIcon(imageIcon);
 	}
+
+	
+	public EntidadGrafica getEntidadGrafica() {
+		return this;
+	}
 	
 }

@@ -40,4 +40,5 @@ public abstract class EntidadGrafica {
 		}
 	}
 	
+	public abstract EntidadGrafica getEntidadGrafica();
 }
