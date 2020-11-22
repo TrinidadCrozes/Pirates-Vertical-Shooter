@@ -31,4 +31,9 @@ public class Proyectil_Infectado extends Proyectil{
 	public void visitar(VisitorEntidad v) {
 		v.visit(this);
 	}
+
+	@Override
+	public EntidadGrafica getEntidadGrafica() {
+		return grafica;
+	}
 }

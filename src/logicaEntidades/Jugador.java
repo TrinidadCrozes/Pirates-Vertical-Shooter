@@ -6,7 +6,8 @@ import movimientoEntidades.*;
 
 
 
-import graficaEntidades.*; 
+import graficaEntidades.*;
+import logicaJuego.Juego; 
 
 /**
  * Clase que modela al personaje principal.
@@ -27,7 +28,7 @@ public class Jugador extends Personaje{
 	 */
 	private Jugador(Movimiento movimiento,Proyectil proyectil,Juego juego) {
 		super(movimiento,proyectil); 
-		this.visitor = new VisitorJugador(this);
+		this.visitor = new VisitorJugador();
 		this.grafica = new EntidadGrafica_Jugador();
 		this.juego = juego;
 		this.armaEspecial = false;
@@ -95,4 +96,10 @@ public class Jugador extends Personaje{
 	public void visitar(VisitorEntidad v) {
 		v.visit(this);
 	}
+
+	@Override
+	public EntidadGrafica getEntidadGrafica() {
+		return grafica;
+	}
+
 }

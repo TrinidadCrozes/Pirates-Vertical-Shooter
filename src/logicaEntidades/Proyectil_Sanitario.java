@@ -31,5 +31,10 @@ public class Proyectil_Sanitario extends Proyectil{
 	public void visitar(VisitorEntidad v) {
 		v.visit(this);
 	}
+
+	@Override
+	public EntidadGrafica getEntidadGrafica() {
+		return grafica;
+	}
 }
 

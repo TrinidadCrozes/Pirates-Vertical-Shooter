@@ -37,4 +37,9 @@ public class Infectado_Beta extends Infectado{
 	public void visitar(VisitorEntidad v) {
 		v.visit(this);
 	}
+
+	@Override
+	public EntidadGrafica getEntidadGrafica() {
+		return grafica;
+	}
 }

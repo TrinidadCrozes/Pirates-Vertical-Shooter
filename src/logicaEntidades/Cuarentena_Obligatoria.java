@@ -29,6 +29,11 @@ public class Cuarentena_Obligatoria extends Efecto_Temporal {
 	public void visitar(VisitorEntidad v) {
 		v.visit(this);
 	}
+
+	@Override
+	public EntidadGrafica getEntidadGrafica() {
+		return grafica;
+	}
 }
 
 

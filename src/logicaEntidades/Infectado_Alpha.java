@@ -40,4 +40,9 @@ public class Infectado_Alpha extends Infectado{
 	public boolean estadoCritico() {
 		return (vida <= 20);
 	}
+
+	@Override
+	public EntidadGrafica getEntidadGrafica() {
+		return grafica;
+	}
 }

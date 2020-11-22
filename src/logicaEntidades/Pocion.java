@@ -38,5 +38,10 @@ public class Pocion extends Objeto_Precioso{
 	public void visitar(VisitorEntidad v) {
 		v.visit(this);
 	}
+
+	@Override
+	public EntidadGrafica getEntidadGrafica() {
+		return grafica;
+	}
 }
 

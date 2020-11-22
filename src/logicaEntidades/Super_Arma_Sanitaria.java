@@ -28,4 +28,9 @@ public class Super_Arma_Sanitaria extends Efecto_Temporal {
 	public void visitar(VisitorEntidad v) {
 		v.visit(this);
 	}
+
+	@Override
+	public EntidadGrafica getEntidadGrafica() {
+		return grafica;
+	}
 }

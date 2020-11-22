@@ -48,4 +48,5 @@ public abstract class Proyectil extends Entidad {
 		this.colisiono = true;
 	}
 	
+	
 }
