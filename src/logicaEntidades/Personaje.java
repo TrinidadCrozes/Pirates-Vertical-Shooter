@@ -69,7 +69,7 @@ public abstract class Personaje extends Entidad {
 	 * @return True si está vivo, false en caso contrario.
 	 */
 	public boolean estaVivo() {
-		return vida != 0;
+		return vida > 0;
 	}
 	
 }
