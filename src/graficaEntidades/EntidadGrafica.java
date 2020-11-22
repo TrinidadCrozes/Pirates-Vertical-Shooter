@@ -40,7 +40,4 @@ public abstract class EntidadGrafica {
 		}
 	}
 	
-	public EntidadGrafica getEntidadGrafica() {
-		return this;
-	}
 }
