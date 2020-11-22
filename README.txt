@@ -17,3 +17,4 @@ Cambié el nombre de la clase LogicaMapa por Juego. Lo puse en un package logica
 necesitando).
 No estoy segura de cómo crear el movimiento del proyectil del jugador, tipo que posiciones ponerle, xq como que la posicion inicial tendria que estar relacionado con la relacion del jugador.
 Necesitaría agregar un método que getEntidadGrafica en todas las entidades.
+--->agregado!
