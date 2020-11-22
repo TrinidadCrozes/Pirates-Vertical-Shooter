@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 /**
  * Clase que modela las entidades gráficas del juego.
  */
-public class EntidadGrafica {
+public abstract class EntidadGrafica {
 	protected JLabel etiqueta;
 	
 	/**
@@ -38,5 +38,9 @@ public class EntidadGrafica {
 			grafico.setImage(newimg);
 			label.repaint();
 		}
+	}
+	
+	public EntidadGrafica getEntidadGrafica() {
+		return this;
 	}
 }
