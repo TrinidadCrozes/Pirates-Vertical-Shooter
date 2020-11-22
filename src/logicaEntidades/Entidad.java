@@ -1,5 +1,6 @@
 package logicaEntidades; 
 import visitor.*;
+import graficaEntidades.EntidadGrafica;
 import movimientoEntidades.*;
 
 /**
@@ -36,6 +37,10 @@ public abstract class Entidad {
 	 */
 	public void setMovimiento(Movimiento movimiento) {
 		this.movimiento = movimiento;
+	}
+	
+	public EntidadGrafica getEntidadGrafica() {
+		return this.getEntidadGrafica();
 	}
 	
 }
