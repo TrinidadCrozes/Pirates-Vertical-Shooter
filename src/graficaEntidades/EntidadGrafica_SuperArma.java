@@ -13,7 +13,4 @@ public class EntidadGrafica_SuperArma extends EntidadGrafica{
 		this.etiqueta.setIcon(imageIcon);
 	}
 	
-	public EntidadGrafica getEntidadGrafica() {
-		return this;
-	}
 }
