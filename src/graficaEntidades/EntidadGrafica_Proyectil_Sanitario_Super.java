@@ -13,8 +13,4 @@ public class EntidadGrafica_Proyectil_Sanitario_Super extends EntidadGrafica{
 		this.etiqueta.setIcon(imageIcon);
 	}
 
-
-	public EntidadGrafica getEntidadGrafica() {
-		return this;
-	}
 }
