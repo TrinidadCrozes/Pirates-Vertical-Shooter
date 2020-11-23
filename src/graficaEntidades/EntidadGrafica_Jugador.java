@@ -13,12 +13,5 @@ public class EntidadGrafica_Jugador extends EntidadGrafica{
 		redimensionar(this.etiqueta,imageIcon);
 		this.etiqueta.setIcon(imageIcon);
 	}
-
-	public EntidadGrafica getEntidadGrafica() {
-		return this;
-	}
 	
-	
-
-
 }
