@@ -13,10 +13,5 @@ public class EntidadGrafica_Pocion extends EntidadGrafica {
 		redimensionar(this.etiqueta,imageIcon);
 		this.etiqueta.setIcon(imageIcon);
 	}
-
-
-	public EntidadGrafica getEntidadGrafica() {
-		return this;
-	}
 	
 }
