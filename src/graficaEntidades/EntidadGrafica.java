@@ -39,6 +39,4 @@ public abstract class EntidadGrafica {
 			label.repaint();
 		}
 	}
-	
-	public abstract EntidadGrafica getEntidadGrafica();
 }
