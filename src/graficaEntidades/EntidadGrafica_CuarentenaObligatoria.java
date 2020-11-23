@@ -13,12 +13,5 @@ public class EntidadGrafica_CuarentenaObligatoria extends EntidadGrafica{
 		redimensionar(this.etiqueta,imageIcon);
 		this.etiqueta.setIcon(imageIcon);
 	}
-
-	
-	public EntidadGrafica getEntidadGrafica() {
-		return this;
-	}
-	
-	
 	
 }
