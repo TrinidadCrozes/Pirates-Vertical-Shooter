@@ -18,7 +18,7 @@ public class FabricaBeta extends FabricaInfectado {
 	 * Constructor de la fábrica.
 	 * @param juego
 	 */
-	public FabricaAlpha(Juego juego) {
+	public FabricaBeta(Juego juego) {
 		super(juego);
 	}
 
