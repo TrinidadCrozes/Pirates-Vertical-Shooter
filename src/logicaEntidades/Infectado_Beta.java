@@ -16,10 +16,9 @@ public class Infectado_Beta extends Infectado{
 	/**
 	 * Constructor del enemigo beta.
 	 * @param movimiento Movimiento del enemigo beta.
-	 * @param proyectil Proyectil del enemigo beta.
 	 */
-	public Infectado_Beta(Movimiento movimiento, Proyectil proyectil) {
-		super(movimiento, proyectil);
+	public Infectado_Beta(Movimiento movimiento) {
+		super(movimiento);
 		this.damageFisico = this.damageBeta;
 		this.vida = this.vidaBeta;
 		this.visitor = new VisitorEnemigoBeta(this);
@@ -37,7 +36,7 @@ public class Infectado_Beta extends Infectado{
 	public void visitar(VisitorEntidad v) {
 		v.visit(this);
 	}
-
+	
 	@Override
 	public EntidadGrafica getEntidadGrafica() {
 		return grafica;
