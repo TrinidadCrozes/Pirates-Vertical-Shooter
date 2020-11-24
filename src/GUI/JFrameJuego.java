@@ -53,7 +53,7 @@ public class JFrameJuego extends JFrame {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(450, 0, 450, 740);
-		contentPane = new PanelImagen();
+		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -108,7 +108,11 @@ public class JFrameJuego extends JFrame {
 	 */
 	public void agregarEnemigo(Infectado enemigo, Point ubicacion) {
 		
-		
+		EntidadGrafica graficaEnemigo = enemigo.getEntidadGrafica();
+		JLabel labelEnemigo = graficaEnemigo.getJLabel();
+		labelEnemigo.setLocation(ubicacion);
+		contentPane.add(labelEnemigo);
+		contentPane.repaint();
 		
 	}
 	
