@@ -16,10 +16,9 @@ public class Infectado_Alpha extends Infectado{
 	/**
 	 * Constructor del enemigo alpha.
 	 * @param movimiento Movimiento del enemigo.
-	 * @param proyectil Proyectil del enemigo.
 	 */
-	public Infectado_Alpha(Movimiento movimiento,Proyectil proyectil) {
-		super(movimiento, proyectil);
+	public Infectado_Alpha(Movimiento movimiento) {
+		super(movimiento);
 		this.damageFisico = damageAlpha;
 		this.visitor = new VisitorEnemigoAlpha(this);
 		this.grafica = new EntidadGrafica_Enemigo_Alpha();
