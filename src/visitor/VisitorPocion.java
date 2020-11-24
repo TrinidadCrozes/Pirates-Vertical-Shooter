@@ -28,7 +28,7 @@ public class VisitorPocion implements VisitorEntidad{
 
 	@Override
 	public void visit(Jugador j) {
-		j.rellenarVida(p.getVida());
+		j.rellenarVida(p.getVidaSumar());
 	}
 
 	@Override
