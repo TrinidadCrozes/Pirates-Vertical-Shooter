@@ -8,6 +8,8 @@ import movimientoEntidades.*;
  */
 public abstract class Entidad {
 	protected Movimiento movimiento;
+	protected int vida;
+	protected final int vidaMax = 100;
 	
 	/**
 	 * Crea una entidad.
@@ -15,6 +17,7 @@ public abstract class Entidad {
 	 */
 	public Entidad(Movimiento movimiento) {
 		this.movimiento = movimiento;
+		this.vida = vidaMax;
 	}
 	
 	/**
@@ -22,6 +25,41 @@ public abstract class Entidad {
 	 * @param v Visitor.
 	 */
 	public abstract void visitar(VisitorEntidad v);
+	
+	/**
+	 * Retorna la vida del personaje.
+	 * @return Vida.
+	 */
+	public int getVida() {
+		return vida;
+	}
+	
+	/**
+	 * Retorna la vida máxima del personaje.
+	 * @return Vida máxima.
+	 */
+	public int getVidaMax() {
+		return vidaMax;
+	}
+	
+	/**
+	 * Resta al personaje la vida indicada.
+	 * @param v Vida a restar.
+	 */
+	public void quitarVida(int v) {
+		this.vida = this.vida - v;
+		if(this.vida < 0) {
+			this.vida = 0;
+		}
+	}
+	
+	/**
+	 * Analiza si el personaje está vivo.
+	 * @return True si está vivo, false en caso contrario.
+	 */
+	public boolean estaVivo() {
+		return vida > 0;
+	}
 
 	/**
 	 * Retorna el movimiento de la entidad.
@@ -39,6 +77,9 @@ public abstract class Entidad {
 		this.movimiento = movimiento;
 	}
 	
+	/**
+	 * Retorna la entidad gráfica.
+	 * @return Entidad gráfica.
+	 */
 	public abstract EntidadGrafica getEntidadGrafica();
-	
 }
