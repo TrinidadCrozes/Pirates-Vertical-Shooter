@@ -43,12 +43,12 @@ public class VisitorEnemigoAlpha implements VisitorEntidad{
 
 	@Override
 	public void visit(Proyectil_Sanitario_Super ps) {
-		ps.haColisionado();
+		ps.quitarVida(ps.getVida());
 	}
 
 	@Override
 	public void visit(Proyectil_Sanitario ps) {
-		ps.haColisionado();
+		ps.quitarVida(ps.getVida());
 	}
 
 	@Override
