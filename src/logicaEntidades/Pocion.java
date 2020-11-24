@@ -27,7 +27,7 @@ public class Pocion extends Objeto_Precioso{
 	 * Retorna la vida que suma consumir la poción.
 	 * @return Vida.
 	 */
-	public int getVida() {
+	public int getVidaSumar() {
 		return vida;
 	}
 	
