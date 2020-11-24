@@ -57,6 +57,18 @@ public class MenteTeclado extends Juego implements KeyListener {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void detenerEnemigos(int duracion) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void cambiarArmaJugador(int duracion) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }
