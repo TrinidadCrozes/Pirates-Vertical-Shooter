@@ -33,21 +33,21 @@ public class VisitorJugador implements VisitorEntidad {
 
 	@Override
 	public void visit(Proyectil_Infectado pi) {
-		pi.haColisionado();
+		pi.quitarVida(pi.getVida());
 	}
 
 	@Override
 	public void visit(Pocion p) {
-		p.haColisionado();
+		p.quitarVida(p.getVida());
 	}
 
 	@Override
 	public void visit(Cuarentena_Obligatoria co) {
-		co.haColisionado();
+		co.quitarVida(co.getVida());
 	}
 
 	@Override
 	public void visit(Super_Arma_Sanitaria sa) {
-		sa.haColisionado();
+		sa.quitarVida(sa.getVida());
 	}
 }
