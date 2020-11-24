@@ -5,19 +5,13 @@ public class Nivel1 extends Nivel {
 	public Nivel1() {
 		
 		super(20);
+		this.siguienteNivel = new Nivel2();
 		
 	}
+
+	@Override
+	protected Nivel getSiguienteNivel() {
+		return this.siguienteNivel;
+	}
 	
-	@Override
-	protected int getCantidadEnemigosAlpha() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	protected int getCantidadEnemigosBeta() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 }
