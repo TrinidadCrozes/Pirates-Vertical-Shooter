@@ -1,6 +1,5 @@
 package logicaEntidades;
 
-
 import movimientoEntidades.*;
 
 /**
@@ -12,10 +11,9 @@ public abstract class Infectado extends Personaje{
 	/**
 	 * Constructor del infectado.
 	 * @param movimiento Movimiento del infectado.
-	 * @param proyectil Proyectil del infectado.
 	 */
-	public Infectado(Movimiento movimiento,Proyectil proyectil) {
-		super(movimiento, proyectil);
+	public Infectado(Movimiento movimiento) {
+		super(movimiento);
 	}
 	
 	/**
