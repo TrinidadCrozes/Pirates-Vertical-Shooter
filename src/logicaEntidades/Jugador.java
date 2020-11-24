@@ -4,8 +4,6 @@ import visitor.VisitorEntidad;
 import visitor.VisitorJugador;
 import movimientoEntidades.*;
 
-
-
 import graficaEntidades.*;
 import logicaJuego.Juego; 
 
@@ -23,11 +21,10 @@ public class Jugador extends Personaje{
 	/**
 	 * Constructor del jugador.
 	 * @param movimiento Movimiento del jugador.
-	 * @param proyectil Proyectil del jugador.
 	 * @param juego Juego del cual forma parte el juego.
 	 */
-	private Jugador(Movimiento movimiento,Proyectil proyectil,Juego juego) {
-		super(movimiento,proyectil); 
+	private Jugador(Movimiento movimiento,Juego juego) { 
+		super(movimiento); 
 		this.visitor = new VisitorJugador();
 		this.grafica = new EntidadGrafica_Jugador();
 		this.juego = juego;
@@ -67,13 +64,12 @@ public class Jugador extends Personaje{
 	/**
 	 * Obtiene un jugador.
 	 * @param movimiento Movimiento del jugador.
-	 * @param proyectil Proyectil del jugador.
 	 * @param juego Juego.
 	 * @return Jugador.
 	 */
-	public static Jugador getJugador(Movimiento movimiento,Proyectil proyectil,Juego juego) {
+	public static Jugador getJugador(Movimiento movimiento,Juego juego) {
 		if(jugador == null) {
-			jugador = new Jugador(movimiento,proyectil,juego);
+			jugador = new Jugador(movimiento,juego);
 		}
 		return jugador;
 	}
@@ -101,5 +97,4 @@ public class Jugador extends Personaje{
 	public EntidadGrafica getEntidadGrafica() {
 		return grafica;
 	}
-
 }
