@@ -59,4 +59,10 @@ public abstract class Juego extends Thread {
 		return this.jugador;
 	}
 
+	public abstract void detenerEnemigos(int duracion);
+
+	public abstract void cambiarArmaJugador(int duracion);
+
+
 }
+
