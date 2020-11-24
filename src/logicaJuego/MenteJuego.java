@@ -7,19 +7,18 @@ import java.util.Random;
 import Fabrica.FabricaAlpha;
 import Fabrica.FabricaBeta;
 import Fabrica.FabricaInfectado;
-import GUI.JFrameJuego;
 import logicaEntidades.Entidad;
 import logicaEntidades.Infectado;
 import logicaEntidades.Jugador;
-import logicaEntidades.Proyectil;
-import logicaEntidades.Proyectil_Sanitario;
-import movimientoEntidades.Movimiento;
+
 import movimientoEntidades.Movimiento_Enemigo;
 import movimientoEntidades.Movimiento_Jugador;
-import movimientoEntidades.Movimiento_Proyectil_Jugador;
 
 public class MenteJuego extends Juego {
-
+	
+	protected int tiempoCuarentena = 0; 
+	protected int tiempoSuperArma = 0; 
+	
 	@Override
 	public void inicializarMapa() {
 		
@@ -37,11 +36,10 @@ public class MenteJuego extends Juego {
 
 		int mitad_JFrameJuego = (int)(this.gui_juego.getWidth()/2);
 		Point pos = new Point(mitad_JFrameJuego, 0);	
-		Movimiento_Jugador mov_jugador = new Movimiento_Jugador(mitad_JFrameJuego, 0, 4, this.gui_juego.getHeight());
-		Movimiento mov_proyectil_jugador = new Movimiento_Proyectil_Jugador( 0, 0, 10, this.gui_juego.getHeight());
-		Proyectil proyectil_jugador = new Proyectil_Sanitario(mov_proyectil_jugador);
-		this.jugador = Jugador.getJugador(mov_jugador, proyectil_jugador, this);
+		Movimiento_Jugador mov_jugador = new Movimiento_Jugador(pos.x, pos.y, 4, this.gui_juego.getHeight());
+		this.jugador = Jugador.getJugador(mov_jugador, this);
 		this.gui_juego.agregarJugador(this.jugador, pos);
+		this.objetos_en_el_mapa.add(this.jugador);
 		
 	}
 	
@@ -55,11 +53,11 @@ public class MenteJuego extends Juego {
 		FabricaInfectado fabAlpha = new FabricaAlpha(this);
 		FabricaInfectado fabBeta = new FabricaBeta(this);
 		for(int i = 0; i < nivel.getCantidadEnemigosAlpha(); i++) {
-			inf = fabAlpha.crearInfectado();
+			inf = fabAlpha.crearInfectado(this.gui_juego.getWidth(), this.gui_juego.getHeight());
 			enemigos.add(inf);
 		}
 		for(int i = 0; i < nivel.getCantidadEnemigosBeta(); i++) {
-			inf = fabBeta.crearInfectado();
+			inf = fabBeta.crearInfectado(this.gui_juego.getWidth(), this.gui_juego.getHeight());
 			enemigos.add(inf);
 		}
 		
@@ -70,16 +68,11 @@ public class MenteJuego extends Juego {
 		this.start();
 	}
 
-	public void run() {
+	public void run() {		
 		
-		boolean condicion = true;
-		try {
-			Juego.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-				
+		/*Recorrer la lista de entidades y hacer q se desplacen, evitando el jugador*/
+		/*controlar si hay muertos. controlar si hubo colisiones. controlar el estado de los premios*/
+		//disparos de enemigos con un random 
 		this.gui_juego.repaint();
 		
 	}
@@ -87,13 +80,13 @@ public class MenteJuego extends Juego {
 	/**
 	 * Agrega un enemigo al mapa.
 	 */
-	public void agregarEnemigo() {
+	public Point agregarEnemigo() {
 		
-		Point ubicacion;
+		Point ubicacion = null;
 		Random rnd = new Random(0);
 		int pos_x;
 		int pos_lista_enemigo;
-				
+
 		if (this.enemigos != null) {
 			pos_x = rnd.nextInt(this.gui_juego.getWidth()); 
 			pos_lista_enemigo = rnd.nextInt(this.enemigos.size()-1);
@@ -101,6 +94,8 @@ public class MenteJuego extends Juego {
 			this.enemigos.remove(pos_lista_enemigo);
 			this.gui_juego.agregarEnemigo(this.enemigos.get(pos_lista_enemigo), ubicacion);
 		}
+		
+		return ubicacion;
 		
 	}
 	
@@ -141,6 +136,5 @@ public class MenteJuego extends Juego {
 		}			
 		
 	}
-	
-	
+
 }
