@@ -24,3 +24,6 @@ necesitando).
 No estoy segura de cómo crear el movimiento del proyectil del jugador, tipo que posiciones ponerle, xq como que la posicion inicial tendria que estar relacionado con la relacion del jugador.
 Necesitaría agregar un método que getEntidadGrafica en todas las entidades.
 --->agregado!
+
+Agrugue varias cosas al MenteJuego, dentro del run. Metodos que quitan a las entidades que ya no tienen vida, para detectar colisiones y para que los enemigos disparen. 
+Me genera dudas el enemigosDisparar(), porque atacar devuelve un Proyectil y no estoy segura si crear un Proyectil nuevo y de ahi enviarle una instruccion al Proyectil o como. 
