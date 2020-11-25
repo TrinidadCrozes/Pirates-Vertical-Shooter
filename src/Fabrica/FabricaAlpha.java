@@ -2,7 +2,6 @@
 package Fabrica;
 
 import java.awt.Point;
-import java.util.Random;
 
 import logicaEntidades.Infectado;
 import logicaEntidades.Infectado_Alpha;
