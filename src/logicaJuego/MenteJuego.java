@@ -17,6 +17,8 @@ import movimientoEntidades.Movimiento_Jugador;
 
 public class MenteJuego extends Juego {
 	
+	protected List mitad_enemigos_1;
+	protected List mitad_enemigos_2;
 	protected int tiempoCuarentena = 0; 
 	protected int tiempoSuperArma = 0; 
 	protected boolean jugando = true;
@@ -49,20 +51,27 @@ public class MenteJuego extends Juego {
 	 * Inicializa la lista de enemigos del juego.
 	 */
 	private void inicializarEnemigos() {
-		
-		Infectado inf;
+		Infectado inf1;
+		Infectado inf2;
 		this.enemigos = new LinkedList<Infectado>();	
 		FabricaInfectado fabAlpha = new FabricaAlpha(this);
 		FabricaInfectado fabBeta = new FabricaBeta(this);
-		for(int i = 0; i < nivel.getCantidadEnemigosAlpha(); i++) {
-			inf = fabAlpha.crearInfectado(this.gui_juego.getWidth(), this.gui_juego.getHeight());
-			enemigos.add(inf);
+		for(int i = 0; i < this.nivel.getMitadCantidadEnemigos()/2; i++) {
+			inf1 = fabAlpha.crearInfectado(this.gui_juego.getWidth(), this.gui_juego.getHeight());
+			inf2 = fabAlpha.crearInfectado(this.gui_juego.getWidth(), this.gui_juego.getHeight());
+			mitad_enemigos_1.add(inf1);
+			mitad_enemigos_2.add(inf2);
+			enemigos.add(inf1);
+			enemigos.add(inf2);
 		}
-		for(int i = 0; i < nivel.getCantidadEnemigosBeta(); i++) {
-			inf = fabBeta.crearInfectado(this.gui_juego.getWidth(), this.gui_juego.getHeight());
-			enemigos.add(inf);
-		}
-		
+		for(int i = 0; i < this.nivel.getMitadCantidadEnemigos()/2; i++) {
+			inf1 = fabBeta.crearInfectado(this.gui_juego.getWidth(), this.gui_juego.getHeight());
+			inf2 = fabBeta.crearInfectado(this.gui_juego.getWidth(), this.gui_juego.getHeight());
+			mitad_enemigos_1.add(inf1);
+			mitad_enemigos_2.add(inf2);
+			enemigos.add(inf1);
+			enemigos.add(inf2);
+		}		
 	}
 	
 	@Override
@@ -80,14 +89,26 @@ public class MenteJuego extends Juego {
 		// disparos de enemigos con un random
 		try {
 			while (jugando) {
+				Random random = new Random(0);
+				int i = nextInt(20);
+				//ver lo de las tandas
+				if(!mitad_enemigos_1.isEmpty()) {
+					agregarEnemigo();
+				}			
+				else {
+					
+				}
+				
 				for (Entidad entidad : objetos_en_el_mapa) {
 					entidad.hacer();
 				}
 				Thread.sleep(10);
-
+				
 				quitarEntidadesSinVida();
 				detectarColisiones();
 				enemigosDisparar();
+				avanzarNivel();
+				chequearFinal();
 			}
 			this.gui_juego.repaint();
 
@@ -97,14 +118,38 @@ public class MenteJuego extends Juego {
 
 	}
 	
+	private void avanzarNivel() {
+		if(this.enemigos.isEmpty()) {
+			this.nivel = this.nivel.getSiguienteNivel();
+			if(this.nivel != null)
+				inicializarEnemigos();
+		}
+	}
+	
+	private void chequearFinal() {
+		if(!this.jugador.estaVivo()) {
+			perder();
+			finJuego();
+		}
+		if(this.nivel == null) {
+			ganar();
+			finJuego();
+		}	
+	}
+	
+	private void finJuego() {
+		this.stop();
+	}
+	
 	private void enemigosDisparar() {
-		Random random = null;
+		Proyectil proyectil = null;
+		Random random = new Random(0);
 		for (Infectado infectados: enemigos) {
 			if (random.nextInt(50) == 1) {
-				Proyectil proyectil = infectados.getMovimiento().atacar();
+				proyectil = infectados.getMovimiento().atacar();
+				objetos_en_el_mapa.add(proyectil);
 			}
 		}
-		
 	}
 
 	private void detectarColisiones() {
@@ -135,6 +180,7 @@ public class MenteJuego extends Juego {
 		for (Entidad entidad : objetos_en_el_mapa) {
 			if (!entidad.estaVivo()) {
 				objetos_en_el_mapa.remove(entidad);
+				entidad.getEntidadGrafica().getJLabel().setVisible(false);
 			}
 		}
 	}
@@ -144,39 +190,33 @@ public class MenteJuego extends Juego {
 	/**
 	 * Agrega un enemigo al mapa.
 	 */
-	public Point agregarEnemigo() {
-		
+	public void agregarEnemigo() {
 		Point ubicacion = null;
+		Infectado enemigo_a_agregar = null;
 		Random rnd = new Random(0);
-		int pos_x;
 		int pos_lista_enemigo;
-
+		
 		if (this.enemigos != null) {
-			pos_x = rnd.nextInt(this.gui_juego.getWidth()); 
 			pos_lista_enemigo = rnd.nextInt(this.enemigos.size()-1);
-			ubicacion = new Point(pos_x, 0);
+			enemigo_a_agregar = this.enemigos.get(pos_lista_enemigo);
+			ubicacion = enemigo_a_agregar.getMovimiento().getPosicion();
+			this.gui_juego.agregarEnemigo(enemigo_a_agregar, ubicacion);
 			this.enemigos.remove(pos_lista_enemigo);
-			this.gui_juego.agregarEnemigo(this.enemigos.get(pos_lista_enemigo), ubicacion);
-		}
-		
-		return ubicacion;
-		
+		}	
 	}
 	
 
 	public void detenerEnemigos(int duracion) {
-		
 		for(int i = 0; i < enemigos.size(); i++) {
 			Infectado e = enemigos.get(i);
 			Movimiento_Enemigo mov = (Movimiento_Enemigo) e.getMovimiento();
 			mov.detener(); //No se como manejar lo de la cant de tiempo que lo detengo
 		}
-		
 	}
 
 	public void cambiarArmaJugador(int duracion) {			
 		this.jugador.activarArmaEspecial();
-		//ver lo de la duración
+		//ver lo de la duraciÃ³n
 	}
 	
 	/**
