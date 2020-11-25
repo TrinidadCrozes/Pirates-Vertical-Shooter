@@ -1,5 +1,7 @@
 *Updates de hoy*
 
+VER TANDAS DE INFECTADOS
+
 para la parte grafica: nuestra GUI principal es un JFrame, su contentPane es un PanelImagen. El panel imagen de lo único que se encarga es de poner el GIF de fondo para el juego.
 Empezamos intentando poner el JLabel del jugador principal, para hacerlo se siguen una serie de pasos para minimizar responsabilidades. 
 - desde la GUI, se crea una nueva instacia de MenteJuego, el cual extiende a Juego. 
