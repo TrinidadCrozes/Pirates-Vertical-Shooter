@@ -10,6 +10,7 @@ public abstract class Entidad {
 	protected Movimiento movimiento;
 	protected int vida;
 	protected final int vidaMax = 100;
+	protected VisitorEntidad visitor;
 	
 	/**
 	 * Crea una entidad.
@@ -20,11 +21,19 @@ public abstract class Entidad {
 		this.vida = vidaMax;
 	}
 	
+	public void hacer() {
+		this.movimiento.desplazar();
+	}
+	
 	/**
 	 * Visitor de la entidad.
 	 * @param v Visitor.
 	 */
 	public abstract void visitar(VisitorEntidad v);
+	
+	public VisitorEntidad getVisitor() {
+		return visitor;
+	}
 	
 	/**
 	 * Retorna la vida del personaje.
@@ -35,8 +44,8 @@ public abstract class Entidad {
 	}
 	
 	/**
-	 * Retorna la vida m√°xima del personaje.
-	 * @return Vida m√°xima.
+	 * Retorna la vida m·xima del personaje.
+	 * @return Vida m·xima.
 	 */
 	public int getVidaMax() {
 		return vidaMax;
@@ -54,8 +63,8 @@ public abstract class Entidad {
 	}
 	
 	/**
-	 * Analiza si el personaje est√° vivo.
-	 * @return True si est√° vivo, false en caso contrario.
+	 * Analiza si el personaje est· vivo.
+	 * @return True si est· vivo, false en caso contrario.
 	 */
 	public boolean estaVivo() {
 		return vida > 0;
@@ -78,8 +87,8 @@ public abstract class Entidad {
 	}
 	
 	/**
-	 * Retorna la entidad gr√°fica.
-	 * @return Entidad gr√°fica.
+	 * Retorna la entidad gr·fica.
+	 * @return Entidad gr·fica.
 	 */
 	public abstract EntidadGrafica getEntidadGrafica();
 }
