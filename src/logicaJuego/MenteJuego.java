@@ -1,6 +1,7 @@
 package logicaJuego;
 
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -10,7 +11,7 @@ import Fabrica.FabricaInfectado;
 import logicaEntidades.Entidad;
 import logicaEntidades.Infectado;
 import logicaEntidades.Jugador;
-
+import logicaEntidades.Proyectil;
 import movimientoEntidades.Movimiento_Enemigo;
 import movimientoEntidades.Movimiento_Jugador;
 
@@ -18,6 +19,7 @@ public class MenteJuego extends Juego {
 	
 	protected int tiempoCuarentena = 0; 
 	protected int tiempoSuperArma = 0; 
+	protected boolean jugando = true;
 	
 	@Override
 	public void inicializarMapa() {
@@ -68,15 +70,77 @@ public class MenteJuego extends Juego {
 		this.start();
 	}
 
-	public void run() {		
-		
-		/*Recorrer la lista de entidades y hacer q se desplacen, evitando el jugador*/
-		/*controlar si hay muertos. controlar si hubo colisiones. controlar el estado de los premios*/
-		//disparos de enemigos con un random 
-		this.gui_juego.repaint();
-		
+	public void run() {
+
+		/* Recorrer la lista de entidades y hacer q se desplacen, evitando el jugador */
+		/*
+		 * controlar si hay muertos. controlar si hubo colisiones. controlar el estado
+		 * de los premios
+		 */
+		// disparos de enemigos con un random
+		try {
+			while (jugando) {
+				for (Entidad entidad : objetos_en_el_mapa) {
+					entidad.hacer();
+				}
+				Thread.sleep(10);
+
+				quitarEntidadesSinVida();
+				detectarColisiones();
+				enemigosDisparar();
+			}
+			this.gui_juego.repaint();
+
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
 	}
 	
+	private void enemigosDisparar() {
+		Random random = null;
+		for (Infectado infectados: enemigos) {
+			if (random.nextInt(50) == 1) {
+				Proyectil proyectil = infectados.getMovimiento().atacar();
+			}
+		}
+		
+	}
+
+	private void detectarColisiones() {
+		Entidad entidad1;
+		Entidad entidad2;
+		for (int i = 0; i < objetos_en_el_mapa.size(); i++) {
+			entidad1 = objetos_en_el_mapa.get(i);
+			for (int j = i + 1; j < objetos_en_el_mapa.size(); j++) {// desde i+1 para que no se compare
+				entidad2 = objetos_en_el_mapa.get(j); // con si mismo y sea mas eficiente
+
+				if (colisionaron(entidad1, entidad2)) {
+					entidad1.visitar(entidad2.getVisitor());
+					entidad2.visitar(entidad1.getVisitor());
+
+				}
+			}
+
+		}
+	}
+
+	private boolean colisionaron(Entidad entidad1, Entidad entidad2) {
+		Rectangle E1 = entidad1.getEntidadGrafica().getJLabel().getBounds();
+		Rectangle E2 = entidad2.getEntidadGrafica().getJLabel().getBounds();
+		return E1.intersects(E2);
+	}
+
+	private void quitarEntidadesSinVida() {
+		for (Entidad entidad : objetos_en_el_mapa) {
+			if (!entidad.estaVivo()) {
+				objetos_en_el_mapa.remove(entidad);
+			}
+		}
+	}
+	
+	
+
 	/**
 	 * Agrega un enemigo al mapa.
 	 */
@@ -112,7 +176,7 @@ public class MenteJuego extends Juego {
 
 	public void cambiarArmaJugador(int duracion) {			
 		this.jugador.activarArmaEspecial();
-		//ver lo de la duraciÃ³n
+		//ver lo de la duración
 	}
 	
 	/**
@@ -138,3 +202,5 @@ public class MenteJuego extends Juego {
 	}
 
 }
+
+
