@@ -1,10 +1,9 @@
 package movimientoEntidades;
 
-import logicaEntidades.Juego;
 import logicaEntidades.Proyectil;
-import logicaEntidades.Proyectil_Infectado;
 import logicaEntidades.Proyectil_Sanitario;
 import logicaEntidades.Proyectil_Sanitario_Super;
+import logicaJuego.Juego;
 
 /**
  * Clase que modela al movimiento del jugador.

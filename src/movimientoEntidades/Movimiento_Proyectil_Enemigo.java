@@ -1,5 +1,7 @@
 package movimientoEntidades;
 
+import logicaEntidades.Proyectil;
+
 /**
  * Clase que modela el movimiento de los proyectiles del enemigo.
  */
@@ -38,6 +40,12 @@ public class Movimiento_Proyectil_Enemigo extends Movimiento{
 	@Override
 	public void moverIzquierda() {
 		//No se mueve hacia la izquierda.
+	}
+
+	@Override
+	public Proyectil atacar() {
+		// no hacer nada
+		return null;
 	}
 
 }

@@ -1,5 +1,7 @@
 package movimientoEntidades;
 
+import logicaEntidades.Proyectil;
+
 /**
  * Clase que modela el movimiento de los premios.
  */
@@ -34,6 +36,12 @@ public class Movimiento_Premio extends Movimiento{
 	@Override
 	public boolean puedeMoverse() {
 		return !(this.posicion.y == alturaFrame);
+	}
+
+	@Override
+	public Proyectil atacar() {
+		//no hacer nada
+		return null;
 	}
 
 }

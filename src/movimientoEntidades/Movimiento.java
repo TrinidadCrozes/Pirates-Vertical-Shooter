@@ -2,6 +2,8 @@ package movimientoEntidades;
 
 import java.awt.Point;
 
+import logicaEntidades.Proyectil;
+
 /**
  * Clase que modela al movimiento de una entidad.
  */
@@ -50,5 +52,7 @@ public abstract class Movimiento {
 	 * Desplaza la entidad hacia la izquierda.
 	 */
 	public abstract void moverIzquierda();
+	
+	public abstract Proyectil atacar();
 }
 

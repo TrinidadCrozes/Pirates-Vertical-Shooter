@@ -1,5 +1,7 @@
 package movimientoEntidades;
 
+import logicaEntidades.Proyectil;
+
 /**
  * Clase que modela el movimiento de los proyectiles del jugador.
  */
@@ -34,6 +36,12 @@ public class Movimiento_Proyectil_Jugador extends Movimiento{
 	@Override
 	public boolean puedeMoverse() {
 		return !(this.posicion.y == 0);
+	}
+
+	@Override
+	public Proyectil atacar() {
+		// no hacer nada
+		return null;
 	}
 
 }

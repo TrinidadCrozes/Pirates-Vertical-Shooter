@@ -79,6 +79,8 @@ public class Movimiento_Enemigo extends Movimiento {
 		Movimiento m = new Movimiento_Premio(this.posicion.x,this.posicion.y,2,this.alturaFrame);
 		Super_Arma_Sanitaria sa = new Super_Arma_Sanitaria(m);
 		return sa;
+		
+		//para agregar a la lista de entidades
 	}
 	
 	/**
