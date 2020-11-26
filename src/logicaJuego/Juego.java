@@ -315,17 +315,18 @@ public class Juego extends Thread {
 		Entidad proyectil;
 		Movimiento mov_jugador = this.jugador.getMovimiento();
 		switch(key) {
-			case KeyEvent.VK_LEFT: {
+			case KeyEvent.VK_LEFT: {  //A mi me funciona con VK_A
 					mov_jugador.moverIzquierda();
 				break;
 			}
-			case KeyEvent.VK_RIGHT: {
+			case KeyEvent.VK_RIGHT: { //A mi me funciona con VK_D
 					mov_jugador.moverDerecha();
 				break;
 			}
 			case KeyEvent.VK_SPACE: {
 				proyectil = mov_jugador.atacar();
 				this.objetos_en_el_mapa.add(proyectil);
+				this.gui_juego.agregarEntidad(proyectil);
 				break;
 			}
 		}
