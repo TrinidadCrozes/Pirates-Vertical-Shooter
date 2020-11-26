@@ -26,7 +26,7 @@ public class Jugador extends Personaje{
 	private Jugador(Movimiento movimiento,Juego juego) { 
 		super(movimiento); 
 		this.visitor = new VisitorJugador();
-		this.grafica = new EntidadGrafica_Jugador();
+		this.grafica = new EntidadGrafica_Jugador((int)this.movimiento.getPosicion().getX(),(int)this.movimiento.getPosicion().getY());
 		this.juego = juego;
 		this.armaEspecial = false;
 	}
