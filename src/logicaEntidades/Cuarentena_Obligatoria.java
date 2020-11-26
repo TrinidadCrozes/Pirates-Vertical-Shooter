@@ -19,7 +19,7 @@ public class Cuarentena_Obligatoria extends Efecto_Temporal {
 	public Cuarentena_Obligatoria(Movimiento movimiento) {
 		super(movimiento);
 		this.visitor = new VisitorCuarentenaObligatoria(this);
-		this.grafica = new EntidadGrafica_CuarentenaObligatoria();
+		this.grafica = new EntidadGrafica_CuarentenaObligatoria((int)this.movimiento.getPosicion().getX(),(int)this.movimiento.getPosicion().getY());
 	}
 	
 	/**
