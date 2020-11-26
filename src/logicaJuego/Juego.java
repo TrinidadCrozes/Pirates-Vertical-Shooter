@@ -24,7 +24,9 @@ public class Juego extends Thread {
 	protected JFrameJuego gui_juego;
 	protected Jugador jugador;
 	protected List<Entidad> enemigos = new ArrayList<Entidad>();;
-	protected List<Entidad> objetos_en_el_mapa = new ArrayList<Entidad>();;
+	protected List<Entidad> objetos_en_el_mapa = new ArrayList<Entidad>();
+	protected ArrayList<Entidad> enemigo_premio = new ArrayList<Entidad>();
+	protected ArrayList<Entidad> enemigo_proyectil = new ArrayList<Entidad>();
 	protected Nivel nivel;
 	protected int tiempoCuarentena = 0; 
 	protected int tiempoSuperArma = 0; 
