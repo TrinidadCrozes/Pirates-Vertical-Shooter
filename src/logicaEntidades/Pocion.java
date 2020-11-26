@@ -20,7 +20,7 @@ public class Pocion extends Objeto_Precioso{
 	public Pocion(Movimiento movimiento) {
 		super(movimiento);
 		this.visitor = new VisitorPocion(this);
-		this.grafica = new EntidadGrafica_Pocion();
+		this.grafica = new EntidadGrafica_Pocion((int)this.movimiento.getPosicion().getX(),(int)this.movimiento.getPosicion().getY());
 	}
 	
 	/**
