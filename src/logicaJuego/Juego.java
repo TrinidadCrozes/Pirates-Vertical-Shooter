@@ -80,6 +80,18 @@ public class Juego extends Thread {
 					esperar--;
 				}
 				
+				controlarPowerUps();
+				
+				for(Entidad enemigo : enemigos) {
+					if(!enemigo.estaVivo()) {
+						enemigo_premio.add(enemigo);
+						arrojarPremio();
+					}else {
+						enemigo_proyectil.add(enemigo);
+						arrojarProyectil();
+					}
+				}
+				
 				quitarEntidadesSinVida();
 				detectarColisiones();
 				enemigosDisparar();
@@ -94,6 +106,45 @@ public class Juego extends Thread {
 			e.printStackTrace();
 		}
 
+	}
+	
+	private void arrojarPremio() {
+		Random ran = new Random();
+		int valor;
+		for(Entidad e : enemigo_premio) {
+			valor = ran.nextInt(30);
+			if(valor == 0) {
+				Premio p = e.getMovimiento().lanzarPremio();
+				this.objetos_en_el_mapa.add(p);
+				this.gui_juego.agregarEntidad(p);
+			}
+		}
+	}
+	
+	private void arrojarProyectil() {
+		Random ran = new Random();
+		int valor;
+		for(Entidad e : enemigo_proyectil) {
+			valor = ran.nextInt(30);
+			if(valor == 0) {
+				Proyectil p = e.getMovimiento().atacar();
+				this.objetos_en_el_mapa.add(p);
+				this.gui_juego.agregarEntidad(p);
+			}
+		}
+	}
+	
+	private void controlarPowerUps() {
+		if(tiempoSuperArma > 0) {
+			tiempoSuperArma--;
+		}else {
+			desactivarSuperArma();
+		}
+		if(tiempoCuarentena > 0) {
+			tiempoCuarentena--;
+		}else {
+			moverEnemigos();
+		}
 	}
 	
 	private void avanzarNivelOleada() {
