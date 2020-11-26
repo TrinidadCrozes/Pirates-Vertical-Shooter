@@ -21,7 +21,7 @@ public class Infectado_Alpha extends Infectado{
 		super(movimiento);
 		this.damageFisico = damageAlpha;
 		this.visitor = new VisitorEnemigoAlpha(this);
-		this.grafica = new EntidadGrafica_Enemigo_Alpha();
+		this.grafica = new EntidadGrafica_Enemigo_Alpha((int)this.movimiento.getPosicion().getX(),(int)this.movimiento.getPosicion().getY());
 	}
 	
 	/**
