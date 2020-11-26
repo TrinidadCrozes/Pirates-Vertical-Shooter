@@ -1,32 +1,36 @@
 package logicaJuego;
 
-import java.awt.Point;
+
+
 import java.awt.Rectangle;
+
 import java.util.LinkedList;
+
 import java.util.Random;
 
-import Fabrica.FabricaAlpha;
-import Fabrica.FabricaBeta;
-import Fabrica.FabricaInfectado;
+
 import logicaEntidades.Entidad;
-import logicaEntidades.Infectado;
+
 import logicaEntidades.Jugador;
 import logicaEntidades.Proyectil;
 import movimientoEntidades.Movimiento_Enemigo;
 import movimientoEntidades.Movimiento_Jugador;
 
-public class MenteJuego extends Juego {
-	
-	protected List mitad_enemigos_1;
-	protected List mitad_enemigos_2;
+public class MenteJuego extends Juego{
+
 	protected int tiempoCuarentena = 0; 
 	protected int tiempoSuperArma = 0; 
 	protected boolean jugando = true;
+	protected final int velocidadInicial = 1;
+	protected int oleadaActual;
+	protected final int esperarSigOleada = 50;
+	protected int esperar = 0;
 	
 	@Override
 	public void inicializarMapa() {
 		
-		this.nivel = new Nivel1();
+		this.nivel = new Nivel1(this);
+		oleadaActual = 1;
 		this.objetos_en_el_mapa = new LinkedList<Entidad>();
 		inicializarJugador();
 		inicializarEnemigos();		
@@ -37,41 +41,17 @@ public class MenteJuego extends Juego {
 	 * Inicializa el jugador del juego.
 	 */
 	private void inicializarJugador() {
-
-		int mitad_JFrameJuego = (int)(this.gui_juego.getWidth()/2);
-		Point pos = new Point(mitad_JFrameJuego, 0);	
-		Movimiento_Jugador mov_jugador = new Movimiento_Jugador(pos.x, pos.y, 4, this.gui_juego.getHeight());
+		Movimiento_Jugador mov_jugador = new Movimiento_Jugador(150, 530, velocidadInicial, this.gui_juego.getHeight());
 		this.jugador = Jugador.getJugador(mov_jugador, this);
-		this.gui_juego.agregarJugador(this.jugador, pos);
+		this.gui_juego.agregarEntidad(this.jugador);
 		this.objetos_en_el_mapa.add(this.jugador);
-		
 	}
 	
 	/**
 	 * Inicializa la lista de enemigos del juego.
 	 */
 	private void inicializarEnemigos() {
-		Infectado inf1;
-		Infectado inf2;
-		this.enemigos = new LinkedList<Infectado>();	
-		FabricaInfectado fabAlpha = new FabricaAlpha(this);
-		FabricaInfectado fabBeta = new FabricaBeta(this);
-		for(int i = 0; i < this.nivel.getMitadCantidadEnemigos()/2; i++) {
-			inf1 = fabAlpha.crearInfectado(this.gui_juego.getWidth(), this.gui_juego.getHeight());
-			inf2 = fabAlpha.crearInfectado(this.gui_juego.getWidth(), this.gui_juego.getHeight());
-			mitad_enemigos_1.add(inf1);
-			mitad_enemigos_2.add(inf2);
-			enemigos.add(inf1);
-			enemigos.add(inf2);
-		}
-		for(int i = 0; i < this.nivel.getMitadCantidadEnemigos()/2; i++) {
-			inf1 = fabBeta.crearInfectado(this.gui_juego.getWidth(), this.gui_juego.getHeight());
-			inf2 = fabBeta.crearInfectado(this.gui_juego.getWidth(), this.gui_juego.getHeight());
-			mitad_enemigos_1.add(inf1);
-			mitad_enemigos_2.add(inf2);
-			enemigos.add(inf1);
-			enemigos.add(inf2);
-		}		
+		this.enemigos = this.nivel.getPrimerOleada();
 	}
 	
 	@Override
@@ -79,37 +59,29 @@ public class MenteJuego extends Juego {
 		this.start();
 	}
 
+	@Override
 	public void run() {
-
-		/* Recorrer la lista de entidades y hacer q se desplacen, evitando el jugador */
-		/*
-		 * controlar si hay muertos. controlar si hubo colisiones. controlar el estado
-		 * de los premios
-		 */
-		// disparos de enemigos con un random
 		try {
 			while (jugando) {
-				Random random = new Random(0);
-				int i = nextInt(20);
-				//ver lo de las tandas
-				if(!mitad_enemigos_1.isEmpty()) {
-					agregarEnemigo();
-				}			
-				else {
-					
-				}
-				
+
 				for (Entidad entidad : objetos_en_el_mapa) {
 					entidad.hacer();
 				}
-				Thread.sleep(10);
+				
+				if(esperar <= 0) {
+					agregarEnemigo();
+				}else {
+					esperar--;
+				}
 				
 				quitarEntidadesSinVida();
 				detectarColisiones();
 				enemigosDisparar();
-				avanzarNivel();
-				chequearFinal();
+				avanzarNivelOleada();
+				
+				Thread.sleep(10);
 			}
+			
 			this.gui_juego.repaint();
 
 		} catch (InterruptedException e) {
@@ -118,33 +90,39 @@ public class MenteJuego extends Juego {
 
 	}
 	
-	private void avanzarNivel() {
+	private void avanzarNivelOleada() {
 		if(this.enemigos.isEmpty()) {
-			this.nivel = this.nivel.getSiguienteNivel();
-			if(this.nivel != null)
-				inicializarEnemigos();
+			esperar = esperarSigOleada;
+			if(this.oleadaActual == 1) {
+				this.enemigos = this.nivel.getSegundaOleada();
+				this.oleadaActual = 2;
+			}else {
+				this.nivel = this.nivel.getSiguienteNivel();
+				if(this.nivel == null) {
+					ganarJuego();
+				}else {
+					this.enemigos = this.nivel.getPrimerOleada();
+					this.oleadaActual = 1;
+				}
+			}
 		}
 	}
 	
-	private void chequearFinal() {
-		if(!this.jugador.estaVivo()) {
-			perder();
-			finJuego();
-		}
-		if(this.nivel == null) {
-			ganar();
-			finJuego();
-		}	
+	private void ganarJuego() {
+		
 	}
 	
-	private void finJuego() {
-		this.stop();
+	private void perderJuego() {
+		
 	}
 	
+	/**
+	 * Hace que el enemigo lance un proyectil.
+	 */
 	private void enemigosDisparar() {
 		Proyectil proyectil = null;
-		Random random = new Random(0);
-		for (Infectado infectados: enemigos) {
+		Random random = new Random();
+		for (Entidad infectados: enemigos) {
 			if (random.nextInt(50) == 1) {
 				proyectil = infectados.getMovimiento().atacar();
 				objetos_en_el_mapa.add(proyectil);
@@ -152,24 +130,30 @@ public class MenteJuego extends Juego {
 		}
 	}
 
+	/**
+	 * Detecta las colisiones entre las entidades y las visita.
+	 */
 	private void detectarColisiones() {
 		Entidad entidad1;
 		Entidad entidad2;
 		for (int i = 0; i < objetos_en_el_mapa.size(); i++) {
 			entidad1 = objetos_en_el_mapa.get(i);
-			for (int j = i + 1; j < objetos_en_el_mapa.size(); j++) {// desde i+1 para que no se compare
-				entidad2 = objetos_en_el_mapa.get(j); // con si mismo y sea mas eficiente
-
+			for (int j = i + 1; j < objetos_en_el_mapa.size(); j++) {
+				entidad2 = objetos_en_el_mapa.get(j);
 				if (colisionaron(entidad1, entidad2)) {
 					entidad1.visitar(entidad2.getVisitor());
 					entidad2.visitar(entidad1.getVisitor());
-
 				}
 			}
-
 		}
 	}
 
+	/**
+	 * Detecta si dos entidades colisionaron.
+	 * @param entidad1 Entidad1.
+	 * @param entidad2 Entidad2.
+	 * @return True si colisionaron, false en caso contrario.
+	 */
 	private boolean colisionaron(Entidad entidad1, Entidad entidad2) {
 		Rectangle E1 = entidad1.getEntidadGrafica().getJLabel().getBounds();
 		Rectangle E2 = entidad2.getEntidadGrafica().getJLabel().getBounds();
@@ -179,53 +163,79 @@ public class MenteJuego extends Juego {
 	private void quitarEntidadesSinVida() {
 		for (Entidad entidad : objetos_en_el_mapa) {
 			if (!entidad.estaVivo()) {
+				if(entidad.equals(jugador)) {
+					perderJuego();
+				}
 				objetos_en_el_mapa.remove(entidad);
+				enemigos.remove(entidad);
 				entidad.getEntidadGrafica().getJLabel().setVisible(false);
+				
 			}
 		}
 	}
-	
-	
 
 	/**
 	 * Agrega un enemigo al mapa.
 	 */
 	public void agregarEnemigo() {
-		Point ubicacion = null;
-		Infectado enemigo_a_agregar = null;
+		Entidad enemigo_a_agregar = null;
 		Random rnd = new Random(0);
 		int pos_lista_enemigo;
 		
-		if (this.enemigos != null) {
+		if (this.enemigos != null && !this.enemigos.isEmpty()) {
 			pos_lista_enemigo = rnd.nextInt(this.enemigos.size()-1);
 			enemigo_a_agregar = this.enemigos.get(pos_lista_enemigo);
-			ubicacion = enemigo_a_agregar.getMovimiento().getPosicion();
-			this.gui_juego.agregarEnemigo(enemigo_a_agregar, ubicacion);
-			this.enemigos.remove(pos_lista_enemigo);
+			this.gui_juego.agregarEntidad(enemigo_a_agregar);
 		}	
 	}
 	
-
+	/**
+	 * Detiene a los enemigos una cantidad determinada de tiempo.
+	 * @param duracion Tiempo que se detienen los enemigos.
+	 */
 	public void detenerEnemigos(int duracion) {
 		for(int i = 0; i < enemigos.size(); i++) {
-			Infectado e = enemigos.get(i);
+			Entidad e = enemigos.get(i);
 			Movimiento_Enemigo mov = (Movimiento_Enemigo) e.getMovimiento();
-			mov.detener(); //No se como manejar lo de la cant de tiempo que lo detengo
+			mov.detener();
+			tiempoCuarentena = duracion;
 		}
 	}
-
+	
+	/**
+	 * Desplaza nuevamente a los enemigos.
+	 */
+	public void moverEnemigos() {
+		for(int i = 0; i < enemigos.size(); i++) {
+			Entidad e = enemigos.get(i);
+			Movimiento_Enemigo mov = (Movimiento_Enemigo) e.getMovimiento();
+			mov.mover();
+		}
+	}
+	
+	/**
+	 * Activa el arma mejorada del jugador.
+	 * @param duracion Arma mejorada.
+	 */
 	public void cambiarArmaJugador(int duracion) {			
 		this.jugador.activarArmaEspecial();
-		//ver lo de la duración
+		tiempoSuperArma = duracion;
+	}
+	
+	/**
+	 * Desactiva el super arma del jugador.
+	 */
+	public void desactivarSuperArma() {
+		this.jugador.desactivarArmaEspecial();
 	}
 	
 	/**
 	 * 
 	 * @param e
 	 */
-	public void insertarObjeto(Entidad e) {
+	public void insertarObjeto(Entidad e) { //Para qué es esto?
 		
-		
+	
 		
 	}
 	
@@ -242,5 +252,4 @@ public class MenteJuego extends Juego {
 	}
 
 }
-
 
