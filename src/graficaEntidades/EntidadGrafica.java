@@ -26,17 +26,4 @@ public abstract class EntidadGrafica {
 		return this.etiqueta;
 	}
 	
-	/**
-	 * Redimensiona las imagenes del juego.
-	 * @param label Etiqueta en la que se va a redimensionar la imagen.
-	 * @param grafico Imagen a redimensionar.
-	 */
-	public void redimensionar(JLabel label, ImageIcon grafico) {
-		Image image = grafico.getImage();
-		if (image != null) {  
-			Image newimg = image.getScaledInstance(50,50,java.awt.Image.SCALE_SMOOTH);
-			grafico.setImage(newimg);
-			label.repaint();
-		}
-	}
 }
