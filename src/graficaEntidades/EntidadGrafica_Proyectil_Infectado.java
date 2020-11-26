@@ -7,11 +7,14 @@ public class EntidadGrafica_Proyectil_Infectado extends EntidadGrafica{
 	/**
 	 * Constructor de la entidad gráfica del proyectil infectado.
 	 */
-	public EntidadGrafica_Proyectil_Infectado() {
+	public EntidadGrafica_Proyectil_Infectado(int x,int y) {
 		super();
 		ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/IMG/bomba.png"));
-		redimensionar(this.etiqueta,imageIcon);
+		this.etiqueta.setBounds(x,y,30,30);
 		this.etiqueta.setIcon(imageIcon);
+		imageIcon.setImageObserver(this.etiqueta);
+		this.etiqueta.repaint();
 	}
 	
 }
+
