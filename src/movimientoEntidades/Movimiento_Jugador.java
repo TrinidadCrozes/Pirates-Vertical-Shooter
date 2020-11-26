@@ -1,5 +1,7 @@
 package movimientoEntidades;
 
+import GUI.JFrameJuego;
+import logicaEntidades.Premio;
 import logicaEntidades.Proyectil;
 import logicaEntidades.Proyectil_Sanitario;
 import logicaEntidades.Proyectil_Sanitario_Super;
@@ -10,9 +12,10 @@ import logicaJuego.Juego;
  */
 public class Movimiento_Jugador extends Movimiento{
 	protected Juego juego;
+	protected JFrameJuego gui;
 	
 	/**
-	 * Constructor del movimiento del jugador, se inicializa con la posiciÃ³n inicial del mismo.
+	 * Constructor del movimiento del jugador, se inicializa con la posición inicial del mismo.
 	 * @param x Coordenada x inicial de la entidad.
 	 * @param y Coordenada y inicial de la entidad.
 	 * @param velocidad Velocidad de movimiento de la entidad.
@@ -44,7 +47,7 @@ public class Movimiento_Jugador extends Movimiento{
 
 	@Override
 	public void moverDerecha() {
-		if(this.posicion.x < juego.getJFrameJuego().getWidth())
+		if(this.posicion.x < gui.getWidth() )
 			this.posicion.setLocation(this.posicion.x + velocidad,this.posicion.y);
 	}
 
@@ -57,6 +60,12 @@ public class Movimiento_Jugador extends Movimiento{
 	@Override
 	public boolean puedeMoverse() {
 		return true;
+	}
+
+	@Override
+	public Premio lanzarPremio() {
+		//El jugador no lanza premios
+		return null;
 	}
 
 }

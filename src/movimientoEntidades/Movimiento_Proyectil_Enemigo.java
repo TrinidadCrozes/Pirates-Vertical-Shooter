@@ -1,5 +1,6 @@
 package movimientoEntidades;
 
+import logicaEntidades.Premio;
 import logicaEntidades.Proyectil;
 
 /**
@@ -45,6 +46,12 @@ public class Movimiento_Proyectil_Enemigo extends Movimiento{
 	@Override
 	public Proyectil atacar() {
 		// no hacer nada
+		return null;
+	}
+
+	@Override
+	public Premio lanzarPremio() {
+		//Los proyectiles no lanzan premios
 		return null;
 	}
 
