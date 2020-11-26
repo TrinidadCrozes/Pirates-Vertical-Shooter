@@ -21,7 +21,7 @@ public class Proyectil_Infectado extends Proyectil{
 		super(movimiento);
 		this.poder = poderInfeccion;
 		this.visitor = new VisitorProyectilEnemigo(this);
-		this.grafica = new EntidadGrafica_Proyectil_Infectado();
+		this.grafica = new EntidadGrafica_Proyectil_Infectado((int)this.movimiento.getPosicion().getX(),(int)this.movimiento.getPosicion().getY());
 	}
 	
 	/**
