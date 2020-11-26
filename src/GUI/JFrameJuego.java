@@ -52,7 +52,9 @@ public class JFrameJuego extends JFrame {
 	 * Inicializa el JFrame del juego.
 	 */	
 	private void initGUI() {
-		
+		setTitle("Vertical Shooter");
+		ImageIcon icono = new ImageIcon(this.getClass().getResource("/IMG/bandera.png"));
+		setIconImage(icono.getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(450, 0, 450, 740);
 		contentPane = new JPanel();
@@ -83,7 +85,7 @@ public class JFrameJuego extends JFrame {
 		this.logicaTeclado.setJFrameJuego(this);
 		
 		this.logicaJuego.inicializarMapa();
-		
+		this.addKeyListener((KeyListener) logicaTeclado);
 	}
 	
 	/**
