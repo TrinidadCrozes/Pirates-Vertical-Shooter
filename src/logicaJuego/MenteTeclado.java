@@ -1,11 +1,13 @@
 package logicaJuego;
 
 import java.awt.event.KeyEvent;
+
 import java.awt.event.KeyListener;
 
-import movimientoEntidades.Movimiento_Jugador;
+import logicaEntidades.Entidad;
+import movimientoEntidades.Movimiento;
 
-public class MenteTeclado extends Juego implements KeyListener {
+public class MenteTeclado extends Juego implements KeyListener{
 	
 	@Override
 	public void inicializarMapa() {
@@ -22,26 +24,28 @@ public class MenteTeclado extends Juego implements KeyListener {
 	
 	@Override
 	public void keyPressed(KeyEvent arg0) {
-		
-		Movimiento_Jugador mov_jugador = (Movimiento_Jugador) this.jugador.getMovimiento();
+		Entidad proyectil;
+		Movimiento mov_jugador = this.jugador.getMovimiento();
 		switch(arg0.getKeyCode()) {
 			case KeyEvent.VK_LEFT: {
-				if ( mov_jugador.puedeMoverse() )
 					mov_jugador.moverIzquierda();
+					System.out.print("se movio");
 				break;
 			}
 			case KeyEvent.VK_RIGHT: {
-				if ( mov_jugador.puedeMoverse() )
 					mov_jugador.moverDerecha();
+					System.out.print("se movio");
 				break;
 			}
 			case KeyEvent.VK_SPACE: {
-				mov_jugador.atacar();
+				proyectil = mov_jugador.atacar();
+				this.objetos_en_el_mapa.add(proyectil);
 				break;
 			}
 		}
-		this.gui_juego.repaint();
 		
+		jugador.getEntidadGrafica().getJLabel().setLocation(jugador.getMovimiento().getPosicion());
+		this.gui_juego.repaint();
 	}
 
 
