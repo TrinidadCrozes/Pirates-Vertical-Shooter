@@ -1,44 +1,75 @@
 package logicaJuego;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import Fabrica.FabricaAlpha;
+import Fabrica.FabricaBeta;
+import Fabrica.FabricaInfectado;
+import logicaEntidades.Entidad;
+import logicaEntidades.Infectado;
+
+/**
+ * Clase que modela un nivel del juego.
+ */
 public abstract class Nivel {
 	
-	protected int cantidadEnemigos;
-	protected int cantidadEnemigosAlpha;
-	protected int cantidadEnemigosBeta;
+	protected Juego juego;
 	protected Nivel siguienteNivel;
+	protected ArrayList<Entidad> enemigos_primera_oleada = new ArrayList<Entidad>();
+	protected ArrayList<Entidad> enemigos_segunda_oleada = new ArrayList<Entidad>();;
 	
-	protected Nivel(int cantEnemigos) {
-		
-		this.cantidadEnemigos = cantEnemigos;
-		this.cantidadEnemigosAlpha = cantEnemigos/2;
-		this.cantidadEnemigosBeta = cantEnemigos/2;
-
+	public Nivel(Juego juego) {
+		this.juego = juego;
+	}
+	
+	/**
+	 * Arma las oleadas del juego.
+	 * @param cantidadEnemigos Cantidad de enemigos en la oleada.
+	 * @param oleada Lista de la oleada a armar.
+	 */
+	protected void armarOleadas(int cantidadEnemigos,ArrayList<Entidad> oleada) {
+		Infectado inf;
+		Random ran = new Random();
+		int valor;
+		FabricaInfectado fabricaA = new FabricaAlpha(juego);
+		FabricaInfectado fabricaB = new FabricaBeta(juego);
+		for(int i = 0; i < cantidadEnemigos; i++) {
+			valor = ran.nextInt(2);
+			if(valor % 2 == 0) {
+				inf = fabricaA.crearInfectado();
+				oleada.add(inf);
+				this.juego.getEntidades().add(inf);
+			}else {
+				inf = fabricaB.crearInfectado();
+				oleada.add(inf);
+				this.juego.getEntidades().add(inf);
+			}			
+		}
+		System.out.println("primer oleada: "+this.enemigos_primera_oleada.size());
+		System.out.println("segunda oleada: "+this.enemigos_segunda_oleada.size());
 	}
 	
 	/**
 	 * Retorna el nivel siguiente.
-	 * @return
+	 * @return Siguiente nivel.
 	 */
-	protected abstract Nivel getSiguienteNivel();
+	public abstract Nivel getSiguienteNivel();
 	
-	protected int getListaEnemigos() {
-		return this.cantidadEnemigos;
-	}
-
-	protected int getCantidadEnemigosAlpha() {
-		return this.cantidadEnemigosAlpha;
-	}
-
-	protected int getCantidadEnemigosBeta() {
-		return this.cantidadEnemigosBeta;
+	/**
+	 * Retorna la primer oleada de enemigos.
+	 * @return Primer oleada.
+	 */
+	protected List<Entidad> getPrimerOleada(){
+		return this.enemigos_primera_oleada;
 	}
 	
-	protected int getPrimeraCantidadEnemigos() {
-		return this.cantidadEnemigos/2;
+	/**
+	 * Retorna la segunda oleada de enemigos.
+	 * @return Segunda oleada.
+	 */
+	protected ArrayList<Entidad> getSegundaOleada(){
+		return this.enemigos_segunda_oleada;
 	}
-	
-	protected int getSegundaCantidadEnemigos() {
-		return this.cantidadEnemigos/2;
-	}
-
 }
