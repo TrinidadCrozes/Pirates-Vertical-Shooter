@@ -1,20 +1,22 @@
 package GUI;
 
 import java.awt.EventQueue;
-import java.awt.Point;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import graficaEntidades.*;
 import logicaEntidades.*;
 import logicaJuego.*;
 
+
+@SuppressWarnings("serial")
 public class JFrameJuego extends JFrame {
 
 	private JPanel contentPane;
+	private JLabel labelFondo;
 	private MenteJuego logicaJuego;
 	private MenteTeclado logicaTeclado;
 
@@ -39,7 +41,7 @@ public class JFrameJuego extends JFrame {
 	 * Create the frame.
 	 */
 	public JFrameJuego() {
-		
+
 		initGUI();
 		initGame();
 		startGame();
@@ -54,10 +56,18 @@ public class JFrameJuego extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(450, 0, 450, 740);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+	
+		labelFondo = new JLabel();
+		ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/IMG/background.gif"));
+		labelFondo.setBounds(0, 0, 450, 740);
+		labelFondo.setIcon(imageIcon);
+		imageIcon.setImageObserver(labelFondo);
+		labelFondo.repaint();
+	
+		contentPane.add(labelFondo);
+	
 	}
 	
 
@@ -100,34 +110,26 @@ public class JFrameJuego extends JFrame {
 		return fueraDePantalla;
 		
 	}
-
+	
 	/**
-	 * Agrega gráficamente un enemigo al mapa.
-	 * @param enemigo Infectado a agregar.
-	 * @param ubicacion Point donde debe aparecer el enemigo.
+	 * Agrega gráficamente una entidad al mapa.
+	 * @param entidad Entidad a agregar.
 	 */
-	public void agregarEnemigo(Infectado enemigo, Point ubicacion) {
-		
-		EntidadGrafica graficaEnemigo = enemigo.getEntidadGrafica();
-		JLabel labelEnemigo = graficaEnemigo.getJLabel();
-		labelEnemigo.setLocation(ubicacion);
-		contentPane.add(labelEnemigo);
-		contentPane.repaint();
-		
+	public void agregarEntidad(Entidad entidad) {
+		EntidadGrafica grafica = entidad.getEntidadGrafica();
+		JLabel label = grafica.getJLabel();
+		labelFondo.add(label);
+		labelFondo.repaint();
 	}
 	
 	/**
-	 * Agrega gráficamente el jugador al mapa.
-	 * @param jugador Jugador a agregar.
-	 * @param ubicacion Point donde debe aparecer el jugador.
+	 * Elimina la entidad del mapa.
+	 * @param entidad Entidad a eliminar.
 	 */
-	public void agregarJugador(Jugador jugador, Point ubicacion) {
-		
-		EntidadGrafica graficaJugador = jugador.getEntidadGrafica();
-		JLabel labelJugador = graficaJugador.getJLabel();
-		labelJugador.setLocation(ubicacion);
-		contentPane.add(labelJugador);
-		contentPane.repaint();
-				
+	public void quitarEntidad(Entidad entidad) {
+		EntidadGrafica grafica = entidad.getEntidadGrafica();
+		JLabel label = grafica.getJLabel();
+		this.remove(label);
+		labelFondo.repaint();
 	}
 }
