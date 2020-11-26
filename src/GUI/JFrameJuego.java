@@ -17,8 +17,7 @@ public class JFrameJuego extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel labelFondo;
-	private MenteJuego logicaJuego;
-	private MenteTeclado logicaTeclado;
+	private Juego logicaJuego;
 
 	/**
 	 * Launch the application.
@@ -79,13 +78,26 @@ public class JFrameJuego extends JFrame {
 	
 	private void initGame() {
 		
-		this.logicaJuego = new MenteJuego();
+		this.logicaJuego = new Juego();
 		this.logicaJuego.setJFrameJuego(this);
-		this.logicaTeclado = new MenteTeclado();
-		this.logicaTeclado.setJFrameJuego(this);
 		
 		this.logicaJuego.inicializarMapa();
-		this.addKeyListener((KeyListener) logicaTeclado);
+		
+		addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				mover(arg0);
+			}
+		});
+	}
+	
+	/**
+	 * Mueve el jugador de acuerdo al KeyEvent pasado como parámetro.
+	 * @param key KeyEvent.
+	 */
+	private void mover(KeyEvent key) {
+		this.logicaJuego.mover(key.getKeyCode());
+		this.repaint();
 	}
 	
 	/**
