@@ -12,7 +12,7 @@ import movimientoEntidades.Movimiento_Enemigo;
  * Clase que modela una fábrica de infectados Alpha.
  */
 public class FabricaAlpha extends FabricaInfectado {
-
+	
 	/**
 	 * Constructor de la fábrica.
 	 * @param juego
@@ -22,9 +22,9 @@ public class FabricaAlpha extends FabricaInfectado {
 	}
 
 	@Override
-	public Infectado crearInfectado(int anchoJFrame, int altoJFrame) {
-		Point ubicacion = this.obtenerUbicacion(anchoJFrame);
-		Movimiento_Enemigo movimiento = new Movimiento_Enemigo(ubicacion.x, ubicacion.y, velocidad, altoJFrame);
+	public Infectado crearInfectado() {
+		Point ubicacion = this.obtenerUbicacion();
+		Movimiento_Enemigo movimiento = new Movimiento_Enemigo(ubicacion.x, ubicacion.y, velocidad, juego.getJFrameJuego().getHeight());
 		return new Infectado_Alpha(movimiento);
 	}
 	
