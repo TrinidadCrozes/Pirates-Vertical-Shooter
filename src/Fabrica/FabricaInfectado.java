@@ -1,4 +1,3 @@
-
 package Fabrica;
 
 import java.awt.Point;
@@ -24,20 +23,17 @@ public abstract class FabricaInfectado {
 	
 	/**
 	 * Crea un infectado.
-	 * @param anchoJFrame Ancho del frame del juego.
-	 * @param altoJFrame Alto del frame del juego.
 	 * @return Infectado Nuevo infectado.
 	 */
-	public abstract Infectado crearInfectado(int anchoJFrame, int altoJFrame);
+	public abstract Infectado crearInfectado();
 	
 	/**
 	 * Retorna la ubicacion inicial del infectado.
-	 * @param anchoJFrame Ancho del frame del juego.
 	 * @return ubicación del infectado.
 	 */
-	protected Point obtenerUbicacion(int anchoJFrame) {
+	protected Point obtenerUbicacion() {
 		Random rnd = new Random(0);
-		int pos_x = rnd.nextInt(anchoJFrame); 
+		int pos_x = rnd.nextInt(juego.getJFrameJuego().getWidth()); 
 		Point ubicacion = new Point(pos_x, 0);
 		return ubicacion;
 	}
