@@ -22,7 +22,7 @@ public class Infectado_Beta extends Infectado{
 		this.damageFisico = this.damageBeta;
 		this.vida = this.vidaBeta;
 		this.visitor = new VisitorEnemigoBeta(this);
-		this.grafica = new EntidadGrafica_Enemigo_Beta();
+		this.grafica = new EntidadGrafica_Enemigo_Beta((int)this.movimiento.getPosicion().getX(),(int)this.movimiento.getPosicion().getY());
 	}
 	
 	public int getVidaMax() {
