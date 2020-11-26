@@ -44,12 +44,14 @@ public class Movimiento_Jugador extends Movimiento{
 
 	@Override
 	public void moverDerecha() {
-		this.posicion.setLocation(this.posicion.x + velocidad,this.posicion.y);
+		if(this.posicion.x < juego.getJFrameJuego().getWidth())
+			this.posicion.setLocation(this.posicion.x + velocidad,this.posicion.y);
 	}
 
 	@Override
 	public void moverIzquierda() {
-		this.posicion.setLocation(this.posicion.x - velocidad,this.posicion.y);
+		if(this.posicion.x > 0)
+			this.posicion.setLocation(this.posicion.x - velocidad,this.posicion.y);
 	}
 
 	@Override
