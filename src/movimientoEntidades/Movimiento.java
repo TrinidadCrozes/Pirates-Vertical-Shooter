@@ -54,5 +54,7 @@ public abstract class Movimiento {
 	public abstract void moverIzquierda();
 	
 	public abstract Proyectil atacar();
+	
+	public abstract Premio lanzarPremio();
 }
 
