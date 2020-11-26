@@ -21,7 +21,7 @@ public class Proyectil_Sanitario extends Proyectil{
 		super(movimiento);
 		this.poder = poderDesinfeccion;
 		this.visitor = new VisitorProyectilSanitario(this);
-		this.grafica = new EntidadGrafica_Proyectil_Sanitario();
+		this.grafica = new EntidadGrafica_Proyectil_Sanitario((int)this.movimiento.getPosicion().getX(),(int)this.movimiento.getPosicion().getY());
 	}
 	
 	/**
