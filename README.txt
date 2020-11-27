@@ -1,3 +1,14 @@
+IMPORTANTE: Subo un comprimido xq hay varias cosas x arreglar todavia e hice un monton de cambios e iban a ser un monton de commits mas jajaj.
+Los proyectiles de los enemigos y del jugador se mueven.
+Los enemigos se mueven.
+Arregle varias cosas de los movimientos de las entidades porque habia metodos repetidos.
+PROBLEMAS:  1- Los enemigos se crean todos en el mismo lugar (No estaría funcionando el random de obtenerUbicacion de la fabrica)
+            2- Los proyectiles de los enemigos me vuelven a aparecer al costado como antes y no se por qué pero no lo pude arreglar.
+            3- Tira un error para crear la segunda oleada de enemigos.
+            4- Tira error al haber colisiones entre objetos.
+            5- El proyectil del jugador sale bien, onda en la posicion que le corresponde bien arriba del jugador y depsués cuando hace el primer desplazamiento se mueve al costado, ni idea por que jajaja.
+            
+            
 *Updates de hoy*
 
 VER TANDAS DE INFECTADOS
