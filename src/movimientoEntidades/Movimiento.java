@@ -2,8 +2,11 @@ package movimientoEntidades;
 
 import java.awt.Point;
 
+import GUI.JFrameJuego;
+import logicaEntidades.Entidad;
 import logicaEntidades.Premio;
 import logicaEntidades.Proyectil;
+import logicaJuego.Juego;
 
 /**
  * Clase que modela al movimiento de una entidad.
@@ -46,6 +49,7 @@ public abstract class Movimiento {
 
 	/**
 	 * Desplaza la entidad hacia la derecha.
+	 * @param gui_juego 
 	 */
 	public abstract void moverDerecha();
 
@@ -57,4 +61,19 @@ public abstract class Movimiento {
 	public abstract Proyectil atacar();
 	
 	public abstract Premio lanzarPremio();
+
+	/**
+	 * Le indica a cada Entidad como atacar
+	 * @param juego, no nulo
+	 * @return Entidad que ataca
+	 */
+	public Entidad atacar(Juego juego) {
+		return null;
+	}
+
+	public void moverDerecha(JFrameJuego gui_juego) {
+		//no hace nada
+	}
+	
+	
 }
