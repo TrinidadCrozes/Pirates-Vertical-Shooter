@@ -29,3 +29,6 @@ Necesitaría agregar un método que getEntidadGrafica en todas las entidades.
 
 Agrugue varias cosas al MenteJuego, dentro del run. Metodos que quitan a las entidades que ya no tienen vida, para detectar colisiones y para que los enemigos disparen. 
 Me genera dudas el enemigosDisparar(), porque atacar devuelve un Proyectil y no estoy segura si crear un Proyectil nuevo y de ahi enviarle una instruccion al Proyectil o como. 
+
+Los cambios en la clase Juego, son dos metodos nuevos que tienen los parametros con las clases inicializadas para evitar nulls. 
+Y actualizado Movimiento y MovimientoJugador con esos metodos (no es abstracto para no implementarlo en todas las clases, se puede arreglar. En MovimientoJugador deje ambos metodos por si alguna clase usaba el sin parametros)
