@@ -8,7 +8,7 @@ import movimientoEntidades.*;
  * Clase que modela al tipo de premio efecto temporal.
  */
 public abstract class Efecto_Temporal extends Premio{
-	protected final int duracion = 10;
+	protected final int duracion = 100;
 	
 	/**
 	 * Constructor del tipo de premio efecto temporal.
@@ -26,5 +26,3 @@ public abstract class Efecto_Temporal extends Premio{
 		return duracion;
 	}
 }
-
-

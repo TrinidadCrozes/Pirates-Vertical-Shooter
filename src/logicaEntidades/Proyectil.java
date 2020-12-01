@@ -1,4 +1,8 @@
 package logicaEntidades;
+
+
+
+
 import movimientoEntidades.*;
 
 
@@ -7,7 +11,6 @@ import movimientoEntidades.*;
  */
 public abstract class Proyectil extends Entidad {
 	protected int poder;
-	protected boolean colisiono = false;
 	
 	/**
 	 * Constructor del proyectil.
@@ -31,21 +34,6 @@ public abstract class Proyectil extends Entidad {
 	 */
 	public void setPoder(int poder) {
 		this.poder = poder;
-	}
-	
-	/**
-	 * Analiza si el proyectil ha colisionado contra algo.
-	 * @return True si colisiono, false en caso contrario.
-	 */
-	public boolean Colisiono() {
-		return colisiono;
-	}
-	
-	/**
-	 * Avisa al proyectil que colisiono.
-	 */
-	public void haColisionado() {
-		this.colisiono = true;
 	}
 	
 	

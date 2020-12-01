@@ -4,6 +4,8 @@ import visitor.VisitorEntidad;
 import visitor.VisitorJugador;
 import movimientoEntidades.*;
 
+
+
 import graficaEntidades.*;
 import logicaJuego.Juego; 
 
@@ -12,8 +14,7 @@ import logicaJuego.Juego;
  *
  */
 public class Jugador extends Personaje{
-	private static Jugador jugador;
-	protected VisitorEntidad visitor;
+	private static Jugador jugador = null;
 	protected EntidadGrafica grafica;
 	protected Juego juego;
 	protected boolean armaEspecial;
@@ -23,9 +24,9 @@ public class Jugador extends Personaje{
 	 * @param movimiento Movimiento del jugador.
 	 * @param juego Juego del cual forma parte el juego.
 	 */
-	private Jugador(Movimiento movimiento,Juego juego) { 
+	private Jugador(Movimiento movimiento,Juego juego) {
 		super(movimiento); 
-		this.visitor = new VisitorJugador();
+		this.visitor = new VisitorJugador(this);
 		this.grafica = new EntidadGrafica_Jugador((int)this.movimiento.getPosicion().getX(),(int)this.movimiento.getPosicion().getY());
 		this.juego = juego;
 		this.armaEspecial = false;
@@ -90,11 +91,22 @@ public class Jugador extends Personaje{
 	 * @param v Visitor.
 	 */
 	public void visitar(VisitorEntidad v) {
-		v.visit(this);
+		v.visit((Jugador)this);
 	}
 
 	@Override
 	public EntidadGrafica getEntidadGrafica() {
 		return grafica;
+	}
+
+	@Override
+	public boolean estadoCritico() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	public void setEntidadGrafica(EntidadGrafica g) {
+		this.grafica = g;
 	}
 }

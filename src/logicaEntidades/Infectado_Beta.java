@@ -10,7 +10,6 @@ import graficaEntidades.*;
 public class Infectado_Beta extends Infectado{
 	protected final int damageBeta = 10;
 	protected final int vidaBeta = 120;
-	protected VisitorEntidad visitor;
 	protected EntidadGrafica grafica;
 	
 	/**
@@ -34,11 +33,22 @@ public class Infectado_Beta extends Infectado{
 	 * @param v Visitor.
 	 */
 	public void visitar(VisitorEntidad v) {
-		v.visit(this);
+		v.visit((Infectado_Beta)this);
 	}
-	
+
 	@Override
 	public EntidadGrafica getEntidadGrafica() {
 		return grafica;
+	}
+
+	@Override
+	public boolean estadoCritico() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	public void setEntidadGrafica(EntidadGrafica g) {
+		this.grafica = g;
 	}
 }

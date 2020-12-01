@@ -9,7 +9,6 @@ import movimientoEntidades.*;
  * Clase que modela al premio cuarentena obligatoria.
  */
 public class Cuarentena_Obligatoria extends Efecto_Temporal {
-	protected VisitorEntidad visitor;
 	protected EntidadGrafica grafica;
 	
 	/**
@@ -27,13 +26,22 @@ public class Cuarentena_Obligatoria extends Efecto_Temporal {
 	 * @param v Visitor.
 	 */
 	public void visitar(VisitorEntidad v) {
-		v.visit(this);
+		v.visit((Cuarentena_Obligatoria)this);
 	}
 
 	@Override
 	public EntidadGrafica getEntidadGrafica() {
 		return grafica;
 	}
+
+	@Override
+	public boolean estadoCritico() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void setEntidadGrafica(EntidadGrafica g) {
+		this.grafica = g;
+	}
 }
-
-

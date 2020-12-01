@@ -1,5 +1,6 @@
 package logicaEntidades;
 
+
 import movimientoEntidades.*;
 
 /**

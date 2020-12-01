@@ -10,7 +10,6 @@ import graficaEntidades.*;
  */
 public class Infectado_Alpha extends Infectado{
 	protected final int damageAlpha = 15;
-	protected VisitorEntidad visitor;
 	protected EntidadGrafica grafica;
 	
 	/**
@@ -29,7 +28,7 @@ public class Infectado_Alpha extends Infectado{
 	 * @param v Visitor.
 	 */
 	public void visitar(VisitorEntidad v) {
-		v.visit(this);
+		v.visit((Infectado_Alpha)this);
 	}
 	
 	/**
@@ -39,9 +38,14 @@ public class Infectado_Alpha extends Infectado{
 	public boolean estadoCritico() {
 		return (vida <= 20);
 	}
-
+	
 	@Override
 	public EntidadGrafica getEntidadGrafica() {
-		return grafica;
+		return this.grafica;
+	}
+	
+	@Override
+	public void setEntidadGrafica(EntidadGrafica g) {
+		this.grafica = g;
 	}
 }

@@ -22,21 +22,12 @@ public abstract class Entidad {
 	}
 	
 	/**
-	 * Desplaza a la entidad.
-	 */
-	public void hacer() {
-		this.movimiento.desplazar();
-	}
-	
-	/**
 	 * Visitor de la entidad.
 	 * @param v Visitor.
 	 */
 	public abstract void visitar(VisitorEntidad v);
 	
-	public VisitorEntidad getVisitor() {
-		return visitor;
-	}
+	public abstract boolean estadoCritico();
 	
 	/**
 	 * Retorna la vida del personaje.
@@ -94,4 +85,18 @@ public abstract class Entidad {
 	 * @return Entidad gráfica.
 	 */
 	public abstract EntidadGrafica getEntidadGrafica();
+	
+	/**
+	 * Modifica la entidad grafica de la entidad por la pasada como parametro.
+	 * @param g Entidad grafica.
+	 */
+	public abstract void setEntidadGrafica(EntidadGrafica g);
+	
+	/**
+	 * Retorna el visitor de la entidad.
+	 * @return Visitor.
+	 */
+	public VisitorEntidad getVisitor() {
+		return this.visitor;
+	}
 }
