@@ -1,15 +1,19 @@
 package graficaEntidades;
 
+import java.awt.Image;
+
 import javax.swing.ImageIcon;
 
 public class EntidadGrafica_Proyectil_Sanitario_Super extends EntidadGrafica{
+	protected final int desplazamientoX = 40;
+	protected final int desplazamientoY = -10;
 	/**
 	 * Constructor de la entidad gráfica del proyectil sanitario mejorado.
 	 */
 	public EntidadGrafica_Proyectil_Sanitario_Super(int x,int y) {
 		super();
 		ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/IMG/bomba_pirata_recargada.png"));
-		this.etiqueta.setBounds(x+40,y-10,20,20);
+		acomodarEtiqueta(x,y);
 		this.etiqueta.setIcon(imageIcon);
 		Image image = imageIcon.getImage();
 		if (image != null) {  
@@ -20,4 +24,16 @@ public class EntidadGrafica_Proyectil_Sanitario_Super extends EntidadGrafica{
 		imageIcon.setImageObserver(this.etiqueta);
 		this.etiqueta.repaint();
 	}
+	
+	@Override
+	public void acomodarEtiqueta(int x, int y) {
+		this.etiqueta.setBounds(x+desplazamientoX,y+desplazamientoY,20,20);
+	}
+
+	@Override
+	public void modificarEtiqueta() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }
