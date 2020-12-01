@@ -54,7 +54,7 @@ public class VisitorProyectilSanitario implements VisitorEntidad {
 
 	@Override
 	public void visit(Proyectil_Infectado pi) {
-		// TODO Auto-generated method stub
+		pi.quitarVida(pi.getVida());
 		
 	}
 

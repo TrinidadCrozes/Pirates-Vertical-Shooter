@@ -77,4 +77,3 @@ public class VisitorCuarentenaObligatoria implements VisitorEntidad{
 		
 	}
 }
-

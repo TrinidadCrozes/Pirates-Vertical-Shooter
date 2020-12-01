@@ -78,4 +78,3 @@ public class VisitorSuperArmaSanitaria implements VisitorEntidad {
 		
 	}
 }
-

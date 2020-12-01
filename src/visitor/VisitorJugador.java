@@ -15,7 +15,17 @@ import logicaEntidades.Super_Arma_Sanitaria;
  *
  */
 public class VisitorJugador implements VisitorEntidad {
-
+	@SuppressWarnings("unused")
+	private Jugador j;
+	
+	/**
+	 * Constructor del visitor.
+	 * @param j Jugador.
+	 */
+	public VisitorJugador(Jugador j) {
+		this.j = j;
+	}
+	
 	@Override
 	public void visit(Jugador j) {}
 
