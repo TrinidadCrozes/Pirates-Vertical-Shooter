@@ -7,7 +7,7 @@ import logicaEntidades.Proyectil;
  * Clase que modela el movimiento de los proyectiles del enemigo.
  */
 public class Movimiento_Proyectil_Enemigo extends Movimiento{
-	protected final int cantidadDesplazamientosMax = 5;
+	protected final int cantidadDesplazamientosMax = 50;
 	protected int cantidadDesplazamientos;
 	
 	/**
@@ -24,7 +24,7 @@ public class Movimiento_Proyectil_Enemigo extends Movimiento{
 	
 	@Override
 	public boolean puedeMoverse() {
-		return !(cantidadDesplazamientos == cantidadDesplazamientosMax);
+		return !(cantidadDesplazamientos >= cantidadDesplazamientosMax);
 	}
 
 	@Override
