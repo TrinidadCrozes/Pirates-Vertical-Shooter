@@ -1,10 +1,15 @@
 package GUI;
 
 import java.awt.EventQueue;
+import java.awt.Image;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import graficaEntidades.*;
@@ -14,7 +19,9 @@ import logicaJuego.*;
 
 @SuppressWarnings("serial")
 public class JFrameJuego extends JFrame {
-
+	private final int ancho = 330;
+	private final int altura = 530;
+	
 	private JPanel contentPane;
 	private JLabel labelFondo;
 	private Juego logicaJuego;
@@ -23,6 +30,8 @@ public class JFrameJuego extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		SplashScreen splash = new SplashScreen(3000);
+        splash.showSplash();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -40,18 +49,16 @@ public class JFrameJuego extends JFrame {
 	 * Create the frame.
 	 */
 	public JFrameJuego() {
-
 		initGUI();
 		initGame();
 		startGame();
-		
 	}
 	
 	/**
 	 * Inicializa el JFrame del juego.
 	 */	
 	private void initGUI() {
-		setTitle("Vertical Shooter");
+		setTitle("Pirate's Vertical Shooter");
 		ImageIcon icono = new ImageIcon(this.getClass().getResource("/IMG/bandera.png"));
 		setIconImage(icono.getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -61,7 +68,7 @@ public class JFrameJuego extends JFrame {
 		contentPane.setLayout(null);
 	
 		labelFondo = new JLabel();
-		ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/IMG/background.gif"));
+		ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/IMG/fondito.gif"));
 		labelFondo.setBounds(0, 0, 450, 740);
 		labelFondo.setIcon(imageIcon);
 		imageIcon.setImageObserver(labelFondo);
@@ -75,12 +82,10 @@ public class JFrameJuego extends JFrame {
 	/**
 	 * Dispone cada una de las componentes en el mapa.
 	 */
-	
 	private void initGame() {
 		
 		this.logicaJuego = new Juego();
 		this.logicaJuego.setJFrameJuego(this);
-		
 		this.logicaJuego.inicializarMapa();
 		
 		addKeyListener(new KeyAdapter() {
@@ -89,6 +94,38 @@ public class JFrameJuego extends JFrame {
 				mover(arg0);
 			}
 		});
+	}
+	
+	/**
+	 * Muestra graficamente que el jugador perdio. 
+	 */
+	public void perdio() {
+		JLabel labelGif = new JLabel();
+		labelGif.setSize(417, 305);
+		ImageIcon gif = new ImageIcon(JFrameJuego.class.getResource("/IMG/perdio.gif"));
+		Icon icono = new ImageIcon(gif.getImage().getScaledInstance(labelGif.getWidth(), labelGif.getHeight(), Image.SCALE_DEFAULT));
+		
+		JOptionPane.showMessageDialog(rootPane, "El próximo será mas fácil, lo prometo ", "PERDISTE", JOptionPane.PLAIN_MESSAGE, icono);
+	}
+	
+	
+	/**
+	 * Muestra graficamente que el jugador ganó.
+	 */
+	public void gano() {
+		JLabel labelGif = new JLabel();
+		labelGif.setSize(417, 305);
+		ImageIcon gif = new ImageIcon(JFrameJuego.class.getResource("/IMG/gano.gif"));
+		Icon icono = new ImageIcon(gif.getImage().getScaledInstance(labelGif.getWidth(), labelGif.getHeight(), Image.SCALE_DEFAULT));
+		
+		JOptionPane.showMessageDialog(rootPane, "YES BAAAABY!! ", "GANASTE", JOptionPane.PLAIN_MESSAGE, icono);
+	}
+	
+	/**
+	 * Cierra la ventana.
+	 */
+	public void cerrar() {
+		System.exit(0);
 	}
 	
 	/**
@@ -104,9 +141,17 @@ public class JFrameJuego extends JFrame {
 	 * Comienza el juego.
 	 */
 	private void startGame() {
-		
 		this.logicaJuego.jugar();
-		
+	}
+	
+	@Override
+	public int getWidth() {
+		return this.ancho;
+	}
+	
+	@Override
+	public int getHeight() {
+		return this.altura;
 	}
 	
 	/**
@@ -119,7 +164,7 @@ public class JFrameJuego extends JFrame {
 		boolean fueraDePantalla = false;
 		int pos_x = e.getEntidadGrafica().getJLabel().getLocation().x;
 		int pos_y = e.getEntidadGrafica().getJLabel().getLocation().y;
-		if( pos_x > 450 || pos_x < 0 || pos_y < 0 || pos_y > 740 )
+		if( pos_x > this.getWidth() || pos_x < 0 || pos_y < 0 || pos_y > 740 )
 			fueraDePantalla = true;
 		return fueraDePantalla;
 		
@@ -143,7 +188,7 @@ public class JFrameJuego extends JFrame {
 	public void quitarEntidad(Entidad entidad) {
 		EntidadGrafica grafica = entidad.getEntidadGrafica();
 		JLabel label = grafica.getJLabel();
-		this.remove(label);
+		labelFondo.remove(label);
 		labelFondo.repaint();
 	}
 }
