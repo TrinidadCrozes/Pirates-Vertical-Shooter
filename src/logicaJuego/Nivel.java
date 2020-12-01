@@ -1,8 +1,8 @@
 package logicaJuego;
 
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Random;
+import java.util.Stack;
 
 import Fabrica.FabricaAlpha;
 import Fabrica.FabricaBeta;
@@ -17,8 +17,8 @@ public abstract class Nivel {
 	
 	protected Juego juego;
 	protected Nivel siguienteNivel;
-	protected ArrayList<Entidad> enemigos_primera_oleada = new ArrayList<Entidad>();
-	protected ArrayList<Entidad> enemigos_segunda_oleada = new ArrayList<Entidad>();;
+	protected Stack<Entidad> enemigos_primera_oleada = new Stack<Entidad>();
+	protected Stack<Entidad> enemigos_segunda_oleada = new Stack<Entidad>();;
 	
 	public Nivel(Juego juego) {
 		this.juego = juego;
@@ -29,7 +29,7 @@ public abstract class Nivel {
 	 * @param cantidadEnemigos Cantidad de enemigos en la oleada.
 	 * @param oleada Lista de la oleada a armar.
 	 */
-	protected void armarOleadas(int cantidadEnemigos,ArrayList<Entidad> oleada) {
+	protected void armarOleadas(int cantidadEnemigos,Stack<Entidad> oleada) {
 		Infectado inf;
 		Random ran = new Random();
 		int valor;
@@ -39,17 +39,26 @@ public abstract class Nivel {
 			valor = ran.nextInt(2);
 			if(valor % 2 == 0) {
 				inf = fabricaA.crearInfectado();
-				oleada.add(inf);
-				this.juego.getEntidades().add(inf);
+				oleada.push(inf);
 			}else {
 				inf = fabricaB.crearInfectado();
-				oleada.add(inf);
-				this.juego.getEntidades().add(inf);
+				oleada.push(inf);
 			}			
 		}
-		System.out.println("primer oleada: "+this.enemigos_primera_oleada.size());
-		System.out.println("segunda oleada: "+this.enemigos_segunda_oleada.size());
 	}
+	
+	/**
+	 * Obtiene un enemigo de la oleada correspondiente.
+	 * @param oleada Numero de la oleada.
+	 * @return Enemigo de la oleada.
+	 */
+	public abstract Entidad getEnemigo(int oleada);
+	
+	/**
+	 * Analiza si todos los enemigos ya fueron puestos en el mapa.
+	 * @return True si todos los enemigos de la oleada estan en el juego, false en caso contrario.
+	 */
+	public abstract boolean todosEnJuego();
 	
 	/**
 	 * Retorna el nivel siguiente.
@@ -58,10 +67,15 @@ public abstract class Nivel {
 	public abstract Nivel getSiguienteNivel();
 	
 	/**
+	 * Avisa que ya no hay nadie en juego.
+	 */
+	public abstract void nadieEnJuego();
+	
+	/**
 	 * Retorna la primer oleada de enemigos.
 	 * @return Primer oleada.
 	 */
-	protected List<Entidad> getPrimerOleada(){
+	protected Stack<Entidad> getPrimerOleada(){
 		return this.enemigos_primera_oleada;
 	}
 	
@@ -69,7 +83,7 @@ public abstract class Nivel {
 	 * Retorna la segunda oleada de enemigos.
 	 * @return Segunda oleada.
 	 */
-	protected ArrayList<Entidad> getSegundaOleada(){
+	protected Stack<Entidad> getSegundaOleada(){
 		return this.enemigos_segunda_oleada;
 	}
 }
