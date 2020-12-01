@@ -32,8 +32,8 @@ public abstract class FabricaInfectado {
 	 * @return ubicación del infectado.
 	 */
 	protected Point obtenerUbicacion() {
-		Random rnd = new Random(0);
-		int pos_x = rnd.nextInt(juego.getJFrameJuego().getWidth()); 
+		Random rnd = new Random();
+		int pos_x = rnd.nextInt(juego.getJFrameJuego().getWidth()-1); 
 		Point ubicacion = new Point(pos_x, 0);
 		return ubicacion;
 	}
