@@ -80,7 +80,7 @@ public class Juego extends Thread {
 				enemigo_proyectil.clear();
 				avanzarNivelOleada();
 				
-				//Acá desplazamos a la entidad y actualizamos su pocisión en el mapa.
+				//Acá desplazamos a la entidad y actualizamos su posición en el mapa.
 				for (Entidad entidad : objetos_en_el_mapa) {
 					if(!entidad.equals(jugador)) {
 						entidad.getMovimiento().desplazar();
