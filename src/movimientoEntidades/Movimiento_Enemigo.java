@@ -2,8 +2,6 @@ package movimientoEntidades;
 
 import java.util.Random;
 
-
-
 import logicaEntidades.Cuarentena_Obligatoria;
 import logicaEntidades.Pocion;
 import logicaEntidades.Premio;
@@ -29,34 +27,27 @@ public class Movimiento_Enemigo extends Movimiento {
 		super(x, y, velocidad, alturaFrame);
 	}
 	
-	/**
-	 * Crea un proyectil enemigo.
-	 * @return proyectil enemigo.
-	 */
+	@Override
 	public Proyectil atacar() {
-		Movimiento m = new Movimiento_Proyectil_Enemigo(this.posicion.x,this.posicion.y,this.velocidad + 1,this.alturaFrame);
+		Movimiento m = new Movimiento_Proyectil_Enemigo(this.posicion.x,this.posicion.y,this.velocidad + 3,this.alturaFrame);
 		Proyectil_Infectado p = new Proyectil_Infectado(m);
 		return p;
 	}
 	
-	/**
-	 * Lanza un premio.
-	 * @return premio.
-	 */
+	@Override
 	public Premio lanzarPremio() {
 		Random ran = new Random();
-		int valor = ran.nextInt(2);
 		Premio p = null;
-		if(valor == 1) {
-			valor = ran.nextInt(3);
-			switch (valor) {
-				case 0 : p = crearPocion();
-						break;
-				case 1 : p = crearSuperArma();
-						break;
-				case 2 : p = crearCuarentena();
-						break;
-			}
+		int valor = ran.nextInt(4);
+		switch (valor) {
+			case 0 : p = crearPocion();
+					break;
+			case 1 : p = crearSuperArma();
+					break;
+			case 2 : p = crearCuarentena();
+					break;
+			default : p = null;
+					break;
 		}
 		return p;
 	}
@@ -79,8 +70,6 @@ public class Movimiento_Enemigo extends Movimiento {
 		Movimiento m = new Movimiento_Premio(this.posicion.x,this.posicion.y,2,this.alturaFrame);
 		Super_Arma_Sanitaria sa = new Super_Arma_Sanitaria(m);
 		return sa;
-		
-		//para agregar a la lista de entidades
 	}
 	
 	/**
@@ -97,7 +86,7 @@ public class Movimiento_Enemigo extends Movimiento {
 	public void desplazar() {
 		if(!detenido) {
 			this.posicion.setLocation(this.posicion.x,this.posicion.y + velocidad);
-			if(this.posicion.y == alturaFrame) {
+			if(this.posicion.y >= alturaFrame) {
 				this.posicion.setLocation(this.posicion.x,0);
 			}
 		}
@@ -118,10 +107,16 @@ public class Movimiento_Enemigo extends Movimiento {
 		return !detenido;
 	}
 	
+	/**
+	 * Indica a la entidad que debe detenerse.
+	 */
 	public void detener() {
 		detenido = true;
 	}
-
+	
+	/**
+	 * Indica a la entidad que puede moverse.
+	 */
 	public void mover() {
 		detenido = false;
 	}
