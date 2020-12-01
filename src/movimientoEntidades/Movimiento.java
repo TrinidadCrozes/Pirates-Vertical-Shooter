@@ -16,7 +16,7 @@ public abstract class Movimiento {
 	protected int velocidad,alturaFrame;
 	
 	/**
-	 * Constructor del movimiento de una entidad, se inicializa con la posición inicial de la misma.
+	 * Constructor del movimiento de una entidad, se inicializa con la posiciÃ³n inicial de la misma.
 	 * @param x Coordenada x inicial de la entidad.
 	 * @param y Coordenada y inicial de la entidad.
 	 * @param velocidad Velocidad de movimiento de la entidad.
@@ -29,16 +29,16 @@ public abstract class Movimiento {
 	}
 	
 	/**
-	 * Devuelve la posición de la entidad.
-	 * @return Posición de la entidad.
+	 * Devuelve la posiciÃ³n de la entidad.
+	 * @return PosiciÃ³n de la entidad.
 	 */
 	public Point getPosicion() {
 		return posicion;
 	}
 	
 	/**
-	 * Analiza si la entidad aún puede desplazarse o alcanzó algún tipo de límite.
-	 * @return True si aún puede desplazarse, false en caso contrario.
+	 * Analiza si la entidad aÃºn puede desplazarse o alcanzÃ³ algÃºn tipo de lÃ­mite.
+	 * @return True si aÃºn puede desplazarse, false en caso contrario.
 	 */
 	public abstract boolean puedeMoverse();
 	
@@ -49,7 +49,6 @@ public abstract class Movimiento {
 
 	/**
 	 * Desplaza la entidad hacia la derecha.
-	 * @param gui_juego 
 	 */
 	public abstract void moverDerecha();
 
@@ -58,22 +57,16 @@ public abstract class Movimiento {
 	 */
 	public abstract void moverIzquierda();
 	
+	/**
+	 * Hace que la entidad ataque.
+	 * @return Proyectil lanzado.
+	 */
 	public abstract Proyectil atacar();
 	
-	public abstract Premio lanzarPremio();
-
 	/**
-	 * Le indica a cada Entidad como atacar
-	 * @param juego, no nulo
-	 * @return Entidad que ataca
+	 * Hace que la entidad lance un premio. 
+	 * @return Premio premio lanzado.
 	 */
-	public Entidad atacar(Juego juego) {
-		return null;
-	}
-
-	public void moverDerecha(JFrameJuego gui_juego) {
-		//no hace nada
-	}
-	
+	public abstract Premio lanzarPremio();	
 	
 }
