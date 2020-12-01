@@ -1,8 +1,5 @@
 package graficaEntidades;
 
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 /**
@@ -25,5 +22,17 @@ public abstract class EntidadGrafica {
 	public JLabel getJLabel() {
 		return this.etiqueta;
 	}
+	
+	/**
+	 * Acomoda la etiqueta en la ubicación que especifica.
+	 * @param x Posicion x.
+	 * @param y Posicion y.
+	 */
+	public abstract void acomodarEtiqueta(int x, int y);
+	
+	/**
+	 * Modifica la etiqueta.
+	 */
+	public abstract void modificarEtiqueta();
 	
 }
