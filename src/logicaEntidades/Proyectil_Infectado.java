@@ -10,7 +10,6 @@ import graficaEntidades.*;
  */
 public class Proyectil_Infectado extends Proyectil{
 	protected final int poderInfeccion = 10;
-	protected EntidadGrafica grafica;
 	
 	/**
 	 * Constructor del proyectil infectado.
@@ -28,28 +27,12 @@ public class Proyectil_Infectado extends Proyectil{
 	 * @param v Visitor.
 	 */
 	public void visitar(VisitorEntidad v) {
-		v.visit((Proyectil_Infectado)this);
+		v.visit(this);
 	}
-
-	@Override
-	public EntidadGrafica getEntidadGrafica() {
-		return grafica;
-	}
-
-	@Override
-	public boolean estadoCritico() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
 
 	@Override
 	public boolean estaVivo() {
 		return vida > 0 && this.movimiento.puedeMoverse();
 	}
 	
-	@Override
-	public void setEntidadGrafica(EntidadGrafica g) {
-		this.grafica = g;
-	}
 }
