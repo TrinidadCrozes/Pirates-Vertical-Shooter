@@ -10,17 +10,25 @@ import javax.swing.JPanel;
 import javax.swing.JWindow;
 import javax.swing.SwingConstants;
 
+/**
+ * Clase que modela y muestra un splash screen.
+ */
 @SuppressWarnings("serial")
 public class SplashScreen extends JWindow {
     private int duration;
     private JLabel jLabelTitle;
-
+    
+    /**
+     * Constructor del splash screen.
+     * @param d Duración del splash screen.
+     */
     public SplashScreen(int d) {
         duration = d;
     }
 
-    // A simple little method to show a title screen in the center
-    // of the screen for the amount of time given in the constructor
+    /**
+     * Modela y muestra el splash screen.
+     */
     public void showSplash() {
         this.setLocationByPlatform(true);
 
@@ -29,7 +37,7 @@ public class SplashScreen extends JWindow {
         content.setLayout(null);
         JLabel label = new JLabel();
 
-         // Set the window's bounds, centering the window
+         //Definimos las coordenadas de la ventana y la centramos en la pantalla.
          int width = 450;
          int height = 115;
          Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -37,26 +45,23 @@ public class SplashScreen extends JWindow {
          int y = (screen.height-height)/2;
          this.setBounds(x, y, 915, 460);
 
-         // Build the splash screen
-
-         {
-            jLabelTitle = new JLabel();
-            content.add(jLabelTitle, "Center");
-            jLabelTitle.setText("Pirate's Vertical Shooter");
-            jLabelTitle.setFont(new java.awt.Font("Ubuntu",0,30));
-            jLabelTitle.setHorizontalAlignment(SwingConstants.CENTER);
-            jLabelTitle.setForeground(new java.awt.Color(255,165,0));
-            jLabelTitle.setBounds(0, 298, 437, 157);
-         }
-
+         //Construye el splash screen.
+         jLabelTitle = new JLabel();
+         content.add(jLabelTitle, "Center");
+         jLabelTitle.setText("Pirate's Vertical Shooter");
+         jLabelTitle.setFont(new java.awt.Font("Ubuntu",0,30));
+         jLabelTitle.setHorizontalAlignment(SwingConstants.CENTER);
+         jLabelTitle.setForeground(new java.awt.Color(255,165,0));
+         jLabelTitle.setBounds(0, 298, 437, 157);
+   
          label.setIcon(new ImageIcon(this.getClass().getResource("/IMG/splash.jpg")));
          content.add(label, BorderLayout.WEST);
          label.setBounds(0, 1, 915, 458);
 
-         // Display it
+         //Muestra el splash screen.
          setVisible(true);
 
-         // Wait a little while, maybe while loading resources
+         //Espera un rato, este tiempo se emplea en cargar recursos.
          try { Thread.sleep(duration); } catch (Exception e) {}
 
          setVisible(false);
@@ -64,8 +69,11 @@ public class SplashScreen extends JWindow {
          this.setOpacity(0.0f);
          content.add(label, "West");
     }
+    
+    /**
+     * Muestra el splash screen.
+     */
     public void showSplashAndExit() {
         showSplash();
-
     }
 }
