@@ -1,3 +1,5 @@
+package logicaEntidades;
+
 import logicaJuego.Juego;
 import movimientoEntidades.*;
 
