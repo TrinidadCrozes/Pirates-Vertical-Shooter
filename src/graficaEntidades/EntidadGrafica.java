@@ -33,6 +33,7 @@ public abstract class EntidadGrafica {
 	/**
 	 * Modifica la etiqueta.
 	 */
-	public abstract void modificarEtiqueta();
+	public void modificarEtiqueta() {}
 	
 }
+
