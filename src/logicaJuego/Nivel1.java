@@ -1,4 +1,5 @@
 
+
 package logicaJuego;
 
 import logicaEntidades.Entidad;
@@ -7,8 +8,9 @@ import logicaEntidades.Entidad;
  * Clase que modela el primer nivel del juego.
  */
 public class Nivel1 extends Nivel {
-	protected final int cantEnemigosOleada = 10;
+	protected final int cantEnemigosOleada = 2;
 	protected int cantEnemigosMapa = 0;
+	protected final int nivel = 1;
 	
 	/**
 	 * Constructor del nivel 1.
@@ -49,5 +51,10 @@ public class Nivel1 extends Nivel {
 	@Override
 	public void nadieEnJuego() {
 		this.cantEnemigosMapa = 0;
+	}
+
+	@Override
+	public int numeroNivel() {
+		return nivel;
 	}
 }
