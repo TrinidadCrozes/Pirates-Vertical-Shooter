@@ -8,7 +8,6 @@ import graficaEntidades.*;
  * Clase que modela al premio súper arma sanitaria.
  */
 public class Super_Arma_Sanitaria extends Efecto_Temporal {
-	protected EntidadGrafica grafica;
 	
 	/**
 	 * Constructor del premio super arma sanitaria.
@@ -25,22 +24,7 @@ public class Super_Arma_Sanitaria extends Efecto_Temporal {
 	 * @param v Visitor.
 	 */
 	public void visitar(VisitorEntidad v) {
-		v.visit((Super_Arma_Sanitaria)this);
+		v.visit(this);
 	}
 
-	@Override
-	public EntidadGrafica getEntidadGrafica() {
-		return grafica;
-	}
-
-	@Override
-	public boolean estadoCritico() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-	@Override
-	public void setEntidadGrafica(EntidadGrafica g) {
-		this.grafica = g;
-	}
 }
