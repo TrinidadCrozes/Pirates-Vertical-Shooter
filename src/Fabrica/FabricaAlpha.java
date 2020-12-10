@@ -24,8 +24,8 @@ public class FabricaAlpha extends FabricaInfectado {
 	@Override
 	public Infectado crearInfectado() {
 		Point ubicacion = this.obtenerUbicacion();
-		Movimiento_Enemigo movimiento = new Movimiento_Enemigo(ubicacion.x, ubicacion.y, velocidad, juego.getJFrameJuego().getHeight());
-		return new Infectado_Alpha(movimiento);
+		Movimiento_Enemigo movimiento = new Movimiento_Enemigo((int)ubicacion.getX(),(int)ubicacion.getY(), juego.getJFrameJuego().getHeight());
+		return new Infectado_Alpha(movimiento,juego);
 	}
 	
 }

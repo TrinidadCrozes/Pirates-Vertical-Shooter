@@ -1,3 +1,4 @@
+
 package Fabrica;
 
 import java.awt.Point;
@@ -11,7 +12,6 @@ import logicaJuego.Juego;
  */
 public abstract class FabricaInfectado {
 	protected Juego juego;
-	protected final int velocidad = 1;
 	
 	/**
 	 * Constructor de la fábrica.
