@@ -72,6 +72,12 @@ public abstract class Nivel {
 	public abstract void nadieEnJuego();
 	
 	/**
+	 * Retorna el numero del nivel.
+	 * @return Numero del nivel.
+	 */
+	public abstract int numeroNivel();
+	
+	/**
 	 * Retorna la primer oleada de enemigos.
 	 * @return Primer oleada.
 	 */
