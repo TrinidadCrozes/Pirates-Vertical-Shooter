@@ -7,7 +7,7 @@ import logicaEntidades.Entidad;
  * Clase que modela el nivel 2 del juego.
  */
 public class Nivel2 extends Nivel {
-	protected final int cantEnemigosOleada = 3;
+	protected final int cantEnemigosOleada = 7;
 	protected int cantEnemigosMapa = 0;
 	protected final int nivel = 2;
 	
