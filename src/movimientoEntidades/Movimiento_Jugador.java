@@ -11,18 +11,19 @@ import logicaEntidades.Proyectil_Sanitario_Super;
  */
 public class Movimiento_Jugador extends Movimiento{
 	protected Juego juego;
+	protected final int velocidadJugador = 2;
 	
 	/**
 	 * Constructor del movimiento del jugador, se inicializa con la posición inicial del mismo.
 	 * @param x Coordenada x inicial de la entidad.
 	 * @param y Coordenada y inicial de la entidad.
-	 * @param velocidad Velocidad de movimiento de la entidad.
 	 * @param alturaFrame La altura del frame del juego.
 	 * @param juego Juego.
 	 */
-	public Movimiento_Jugador(int x, int y, int velocidad, int alturaFrame,Juego juego) {
-		super(x, y, velocidad, alturaFrame);
+	public Movimiento_Jugador(int x, int y, int alturaFrame,Juego juego) {
+		super(x, y, alturaFrame);
 		this.juego = juego;
+		this.setVelocidad(velocidadJugador);
 	}
 	
 	/**
@@ -30,7 +31,7 @@ public class Movimiento_Jugador extends Movimiento{
 	 * @return Proyectil.
 	 */
 	public Proyectil atacar() {
-		Movimiento m = new Movimiento_Proyectil_Jugador(this.posicion.x,this.posicion.y,this.velocidad + 3,this.alturaFrame);
+		Movimiento m = new Movimiento_Proyectil_Jugador((int)this.posicion.getX(),(int)this.posicion.getY(),this.alturaFrame);
 		Proyectil_Sanitario ps;
 		
 		if(!juego.getJugador().isArmaEspecial()) {
@@ -48,14 +49,14 @@ public class Movimiento_Jugador extends Movimiento{
 
 	@Override
 	public void moverDerecha() {
-		if(this.posicion.x < juego.getJFrameJuego().getWidth())
-			this.posicion.setLocation(this.posicion.x + velocidad,this.posicion.y);
+		if((int)this.posicion.getX() < juego.getJFrameJuego().getWidth())
+			this.posicion.setLocation((int)this.posicion.getX() + this.getVelocidad(),(int)this.posicion.getY());
 	}
 
 	@Override
 	public void moverIzquierda() {
-		if(this.posicion.x > 0) 
-			this.posicion.setLocation(this.posicion.x - velocidad,this.posicion.y);
+		if((int)this.posicion.getX() > 0)
+			this.posicion.setLocation((int)this.posicion.getX() - this.getVelocidad(),(int)this.posicion.getY());
 	}
 
 	@Override
@@ -65,7 +66,6 @@ public class Movimiento_Jugador extends Movimiento{
 
 	@Override
 	public Premio lanzarPremio() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
