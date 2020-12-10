@@ -10,7 +10,6 @@ import graficaEntidades.*;
  */
 public class Proyectil_Sanitario_Super extends Proyectil_Sanitario{
 	protected final int poderDesinfeccionSuper = 20;
-	protected EntidadGrafica grafica;
 	
 	/**
 	 * Constructor del proyectil mejorado del jugador.
@@ -28,11 +27,7 @@ public class Proyectil_Sanitario_Super extends Proyectil_Sanitario{
 	 * @param v Visitor.
 	 */
 	public void visitar(VisitorEntidad v) {
-		v.visit((Proyectil_Sanitario_Super)this);
+		v.visit(this);
 	}
 
-	@Override
-	public EntidadGrafica getEntidadGrafica() {
-		return this.grafica;
-	}
 }
