@@ -2,11 +2,8 @@ package movimientoEntidades;
 
 import java.awt.Point;
 
-import GUI.JFrameJuego;
-import logicaEntidades.Entidad;
 import logicaEntidades.Premio;
 import logicaEntidades.Proyectil;
-import logicaJuego.Juego;
 
 /**
  * Clase que modela al movimiento de una entidad.
@@ -19,12 +16,10 @@ public abstract class Movimiento {
 	 * Constructor del movimiento de una entidad, se inicializa con la posición inicial de la misma.
 	 * @param x Coordenada x inicial de la entidad.
 	 * @param y Coordenada y inicial de la entidad.
-	 * @param velocidad Velocidad de movimiento de la entidad.
 	 * @param alturaFrame La altura del frame del juego.
 	 */
-	public Movimiento(int x,int y,int velocidad,int alturaFrame) {
+	public Movimiento(int x,int y,int alturaFrame) {
 		posicion = new Point(x,y);
-		this.velocidad = velocidad;
 		this.alturaFrame = alturaFrame;
 	}
 	
@@ -36,6 +31,30 @@ public abstract class Movimiento {
 		return posicion;
 	}
 	
+	/**
+	 * Obtiene la velocidad de la entidad.
+	 * @return Velocidad.
+	 */
+	public int getVelocidad() {
+		return velocidad;
+	}
+	
+	/**
+	 * Retorna la altura del frame.
+	 * @return Altura del frame.
+	 */
+	public int getAlturaFrame() {
+		return alturaFrame;
+	}
+
+	/**
+	 * Modifica la velocidad de la entidad por la pasada como parámetro.
+	 * @param velocidad Velocidad.
+	 */
+	public void setVelocidad(int velocidad) {
+		this.velocidad = velocidad;
+	}
+
 	/**
 	 * Analiza si la entidad aún puede desplazarse o alcanzó algún tipo de límite.
 	 * @return True si aún puede desplazarse, false en caso contrario.
@@ -58,15 +77,14 @@ public abstract class Movimiento {
 	public abstract void moverIzquierda();
 	
 	/**
-	 * Hace que la entidad ataque.
-	 * @return Proyectil lanzado.
+	 * Ataca.
+	 * @return Proyectil que lanza.
 	 */
 	public abstract Proyectil atacar();
 	
 	/**
-	 * Hace que la entidad lance un premio. 
-	 * @return Premio premio lanzado.
+	 * Tira un premio.
+	 * @return Premio.
 	 */
-	public abstract Premio lanzarPremio();	
-	
+	public abstract Premio lanzarPremio();
 }
