@@ -8,7 +8,7 @@ import logicaEntidades.Entidad;
  * Clase que modela el primer nivel del juego.
  */
 public class Nivel1 extends Nivel {
-	protected final int cantEnemigosOleada = 2;
+	protected final int cantEnemigosOleada = 5;
 	protected int cantEnemigosMapa = 0;
 	protected final int nivel = 1;
 	
