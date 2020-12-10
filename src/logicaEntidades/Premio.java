@@ -18,4 +18,15 @@ public abstract class Premio extends Entidad {
 		super(movimiento);
 	}
 	
+	@Override
+	public void morir() {}
+	
+	@Override
+	public void mover() {}
+
+	@Override
+	public void estadoCritico() {}
+	
+	@Override
+	public void detener() {}
 }
