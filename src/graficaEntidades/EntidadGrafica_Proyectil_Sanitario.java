@@ -4,8 +4,12 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-public class EntidadGrafica_Proyectil_Sanitario extends EntidadGrafica{
-	protected final int desplazamientoX = 40;
+/**
+ * Clase que modela la entidad gráfica del proyectil sanitario.
+ */
+public class EntidadGrafica_Proyectil_Sanitario extends EntidadGrafica {
+	
+	protected final int desplazamientoX = 30;
 	protected final int desplazamientoY = -10;
 	/**
 	 * Constructor de la entidad gráfica del proyectil sanitario.
@@ -30,9 +34,4 @@ public class EntidadGrafica_Proyectil_Sanitario extends EntidadGrafica{
 		this.etiqueta.setBounds(x+desplazamientoX,y+desplazamientoY,20,20);
 	}
 
-	@Override
-	public void modificarEtiqueta() {
-		// TODO Auto-generated method stub
-		
-	}
 }
