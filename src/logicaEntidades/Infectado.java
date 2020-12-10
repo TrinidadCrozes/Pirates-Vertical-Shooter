@@ -1,6 +1,4 @@
-package logicaEntidades;
-
-
+import logicaJuego.Juego;
 import movimientoEntidades.*;
 
 /**
@@ -12,9 +10,10 @@ public abstract class Infectado extends Personaje{
 	/**
 	 * Constructor del infectado.
 	 * @param movimiento Movimiento del infectado.
+	 * @param juego Juego.
 	 */
-	public Infectado(Movimiento movimiento) {
-		super(movimiento);
+	public Infectado(Movimiento movimiento,Juego juego) {
+		super(movimiento,juego);
 	}
 	
 	/**
@@ -23,5 +22,22 @@ public abstract class Infectado extends Personaje{
 	 */
 	public int getDamageFisico() {
 		return damageFisico;
+	}
+	
+	@Override
+	public void detener() {
+		Movimiento_Enemigo mov = new Movimiento_Enemigo_Detenido((int)this.movimiento.getPosicion().getX(),(int)this.movimiento.getPosicion().getY(),this.movimiento.getAlturaFrame());
+		this.setMovimiento(mov);
+	}
+	
+	@Override
+	public void mover() {
+		Movimiento_Enemigo mov = new Movimiento_Enemigo((int)this.movimiento.getPosicion().getX(),(int)this.movimiento.getPosicion().getY(),this.movimiento.getAlturaFrame());
+		this.setMovimiento(mov);
+	}
+	
+	@Override
+	public void morir() {
+		this.juego.decrementarCantEnemigos();
 	}
 }
