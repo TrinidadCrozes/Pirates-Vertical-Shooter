@@ -11,6 +11,7 @@ public abstract class Entidad {
 	protected int vida;
 	protected final int vidaMax = 100;
 	protected VisitorEntidad visitor;
+	protected EntidadGrafica grafica;
 	
 	/**
 	 * Crea una entidad.
@@ -27,7 +28,25 @@ public abstract class Entidad {
 	 */
 	public abstract void visitar(VisitorEntidad v);
 	
-	public abstract boolean estadoCritico();
+	/**
+	 * Revisa si la entidad se encuentra en estado crítico, y en caso de estarlo modifica su movimiento y apariencia.
+	 */
+	public abstract void estadoCritico();
+	
+	/**
+	 * Indica que la entidad no esta más en juego.
+	 */
+	public abstract void morir();
+	
+	/**
+	 * Detiene a la entidad.
+	 */
+	public abstract void detener();
+	
+	/**
+	 * Desplaza a la entidad.
+	 */
+	public abstract void mover();
 	
 	/**
 	 * Retorna la vida del personaje.
@@ -84,13 +103,17 @@ public abstract class Entidad {
 	 * Retorna la entidad gráfica.
 	 * @return Entidad gráfica.
 	 */
-	public abstract EntidadGrafica getEntidadGrafica();
+	public EntidadGrafica getEntidadGrafica() {
+		return grafica;
+	}
 	
 	/**
 	 * Modifica la entidad grafica de la entidad por la pasada como parametro.
 	 * @param g Entidad grafica.
 	 */
-	public abstract void setEntidadGrafica(EntidadGrafica g);
+	public void setEntidadGrafica(EntidadGrafica g) {
+		this.grafica = g;
+	}
 	
 	/**
 	 * Retorna el visitor de la entidad.
@@ -98,5 +121,13 @@ public abstract class Entidad {
 	 */
 	public VisitorEntidad getVisitor() {
 		return this.visitor;
+	}
+	
+	/**
+	 * Avisa a la entidad que debe disparar.
+	 * @return Proyectil.
+	 */
+	public Proyectil disparar() {
+		return this.movimiento.atacar();
 	}
 }
