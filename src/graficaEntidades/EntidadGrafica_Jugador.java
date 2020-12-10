@@ -2,6 +2,9 @@ package graficaEntidades;
 
 import javax.swing.ImageIcon;
 
+/**
+ * Clase que modela la entidad gráfica del jugador.
+ */
 public class EntidadGrafica_Jugador extends EntidadGrafica{
 	
 	/**
@@ -18,13 +21,8 @@ public class EntidadGrafica_Jugador extends EntidadGrafica{
 	
 	@Override
 	public void acomodarEtiqueta(int x, int y) {
-		this.etiqueta.setBounds(x,y,100,169);
-	}
-
-	@Override
-	public void modificarEtiqueta() {
-		// TODO Auto-generated method stub
-		
+		this.etiqueta.setBounds(x,y,100,179);
 	}
 	
 }
+
