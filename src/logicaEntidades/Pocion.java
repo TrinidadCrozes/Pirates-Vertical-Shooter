@@ -10,7 +10,6 @@ import graficaEntidades.*;
  */
 public class Pocion extends Objeto_Precioso{
 	protected final int vida = 40;
-	protected EntidadGrafica grafica;
 	
 	/**
 	 * Constructor de la poción.
@@ -35,22 +34,7 @@ public class Pocion extends Objeto_Precioso{
 	 * @param v Visitor.
 	 */
 	public void visitar(VisitorEntidad v) {
-		v.visit((Pocion)this);
-	}
-
-	@Override
-	public EntidadGrafica getEntidadGrafica() {
-		return this.grafica;
-	}
-
-	@Override
-	public boolean estadoCritico() {
-		// TODO Auto-generated method stub
-		return false;
+		v.visit(this);
 	}
 	
-	@Override
-	public void setEntidadGrafica(EntidadGrafica g) {
-		this.grafica = g;
-	}
 }
