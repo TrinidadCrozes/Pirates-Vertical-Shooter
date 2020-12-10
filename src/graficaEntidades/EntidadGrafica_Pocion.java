@@ -4,6 +4,9 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
+/**
+ * Clase que modela la entidad gráfica de la poción.
+ */
 public class EntidadGrafica_Pocion extends EntidadGrafica {
 	protected final int desplazamientoX = 31;
 	protected final int desplazamientoY = 140;
@@ -28,12 +31,6 @@ public class EntidadGrafica_Pocion extends EntidadGrafica {
 	@Override
 	public void acomodarEtiqueta(int x, int y) {
 		this.etiqueta.setBounds(x+desplazamientoX,y+desplazamientoY,50,50);
-	}
-
-	@Override
-	public void modificarEtiqueta() {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }
