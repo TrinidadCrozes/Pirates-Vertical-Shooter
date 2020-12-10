@@ -4,7 +4,11 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-public class EntidadGrafica_SuperArma extends EntidadGrafica{
+/**
+ * Clase que modela la entidad gráfica de la súper arma.
+ */
+public class EntidadGrafica_SuperArma extends EntidadGrafica {
+	
 	protected final int desplazamientoX = 31;
 	protected final int desplazamientoY = 140;
 	/**
@@ -30,9 +34,4 @@ public class EntidadGrafica_SuperArma extends EntidadGrafica{
 		this.etiqueta.setBounds(x+desplazamientoX,y+desplazamientoY,50,50);
 	}
 
-	@Override
-	public void modificarEtiqueta() {
-		// TODO Auto-generated method stub
-		
-	}
 }
