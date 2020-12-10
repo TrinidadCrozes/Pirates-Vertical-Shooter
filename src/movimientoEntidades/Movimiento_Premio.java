@@ -7,7 +7,7 @@ import logicaEntidades.Proyectil;
  * Clase que modela el movimiento de los premios.
  */
 public class Movimiento_Premio extends Movimiento{
-
+	
 	/**
 	 * Constructor del movimiento de un premio, se inicializa con la posición inicial del mismo.
 	 * @param x Coordenada x inicial de la entidad.
@@ -16,12 +16,13 @@ public class Movimiento_Premio extends Movimiento{
 	 * @param alturaFrame La altura del frame del juego.
 	 */
 	public Movimiento_Premio(int x, int y, int velocidad, int alturaFrame) {
-		super(x, y, velocidad, alturaFrame);
+		super(x, y,alturaFrame);
+		this.setVelocidad(velocidad);
 	}
 
 	@Override
 	public void desplazar() {
-		this.posicion.setLocation(this.posicion.x,this.posicion.y + velocidad);
+		this.posicion.setLocation((int)this.posicion.getX(),(int)this.posicion.getY() + velocidad);
 	}
 
 	@Override
@@ -36,18 +37,16 @@ public class Movimiento_Premio extends Movimiento{
 
 	@Override
 	public boolean puedeMoverse() {
-		return !(this.posicion.y == alturaFrame);
+		return !((int)this.posicion.getY() == alturaFrame);
 	}
 
 	@Override
 	public Proyectil atacar() {
-		//no hacer nada
 		return null;
 	}
 
 	@Override
 	public Premio lanzarPremio() {
-		//El premio no puede lanzar un premio
 		return null;
 	}
 
