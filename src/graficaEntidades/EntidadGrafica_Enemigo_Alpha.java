@@ -2,8 +2,10 @@ package graficaEntidades;
 
 import javax.swing.ImageIcon;
 
+/**
+ * Clase que modela la entidad gráfica del enemigo Alpha.
+ */
 public class EntidadGrafica_Enemigo_Alpha extends EntidadGrafica{
-	
 	/**
 	 * Constructor de la entidad gráfica del enemigo alpha.
 	 */
@@ -27,5 +29,4 @@ public class EntidadGrafica_Enemigo_Alpha extends EntidadGrafica{
 		getJLabel().setIcon(imageIcon);
 		getJLabel().repaint();
 	}
-	
 }
