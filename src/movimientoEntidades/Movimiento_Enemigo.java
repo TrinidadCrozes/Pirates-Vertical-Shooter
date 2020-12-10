@@ -1,97 +1,63 @@
 package movimientoEntidades;
 
-import java.util.Random;
-
-import logicaEntidades.Cuarentena_Obligatoria;
-import logicaEntidades.Pocion;
+import Fabrica.Creador_Premio;
 import logicaEntidades.Premio;
 import logicaEntidades.Proyectil;
 import logicaEntidades.Proyectil_Infectado;
-import logicaEntidades.Super_Arma_Sanitaria;
 
 
 /**
  * Clase que modela al movimiento de un enemigo.
  */
 public class Movimiento_Enemigo extends Movimiento {
-	protected boolean detenido = false;
+	protected final int velocidadEnemigo = 1;
+	protected Creador_Premio cp = new Creador_Premio();
 	
 	/**
 	 * Constructor del movimiento de un enemigo, se inicializa con la posición inicial del mismo.
 	 * @param x Coordenada x inicial de la entidad.
 	 * @param y Coordenada y inicial de la entidad.
-	 * @param velocidad Velocidad de movimiento de la entidad.
 	 * @param alturaFrame La altura del frame del juego.
 	 */
-	public Movimiento_Enemigo(int x, int y,int velocidad,int alturaFrame) {
-		super(x, y, velocidad, alturaFrame);
+	public Movimiento_Enemigo(int x, int y,int alturaFrame) {
+		super(x, y, alturaFrame);
+		this.setVelocidad(velocidadEnemigo);
 	}
 	
-	@Override
+	/**
+	 * Crea un proyectil enemigo.
+	 * @return proyectil enemigo.
+	 */
 	public Proyectil atacar() {
-		Movimiento m = new Movimiento_Proyectil_Enemigo(this.posicion.x,this.posicion.y,this.velocidad + 3,this.alturaFrame);
+		Movimiento m = new Movimiento_Proyectil_Enemigo((int)this.posicion.getX(),(int)this.posicion.getY(),this.alturaFrame);
 		Proyectil_Infectado p = new Proyectil_Infectado(m);
 		return p;
 	}
 	
-	@Override
+	/**
+	 * Lanza un premio.
+	 * @return premio.
+	 */
 	public Premio lanzarPremio() {
-		Random ran = new Random();
-		Premio p = null;
-		int valor = ran.nextInt(4);
-		switch (valor) {
-			case 0 : p = crearPocion();
-					break;
-			case 1 : p = crearSuperArma();
-					break;
-			case 2 : p = crearCuarentena();
-					break;
-			default : p = null;
-					break;
-		}
-		return p;
-	}
-	
-	/**
-	 * Crea un premio poción.
-	 * @return poción.
-	 */
-	private Premio crearPocion() {
-		Movimiento m = new Movimiento_Premio(this.posicion.x,this.posicion.y,1,this.alturaFrame);
-		Pocion p = new Pocion(m);
-		return p;
-	}
-	
-	/**
-	 * Crea un premio súper arma.
-	 * @return súper arma.
-	 */
-	private Premio crearSuperArma() {
-		Movimiento m = new Movimiento_Premio(this.posicion.x,this.posicion.y,2,this.alturaFrame);
-		Super_Arma_Sanitaria sa = new Super_Arma_Sanitaria(m);
-		return sa;
-	}
-	
-	/**
-	 * Crea un premio cuarentena.
-	 * @return cuarentena.
-	 */
-	private Premio crearCuarentena() {
-		Movimiento m = new Movimiento_Premio(this.posicion.x,this.posicion.y,2,this.alturaFrame);
-		Cuarentena_Obligatoria co = new Cuarentena_Obligatoria(m);
-		return co;
+		return cp.getPremioRandom((int)this.getPosicion().getX(),(int)this.getPosicion().getY(),this.alturaFrame);
 	}
 	
 	@Override
 	public void desplazar() {
-		if(!detenido) {
-			this.posicion.setLocation(this.posicion.x,this.posicion.y + velocidad);
-			if(this.posicion.y >= alturaFrame) {
-				this.posicion.setLocation(this.posicion.x,0);
-			}
+		this.posicion.setLocation((int)this.posicion.getX(),(int)this.posicion.getY() + velocidad);
+		if((int)this.posicion.getY() >= alturaFrame) {
+			this.posicion.setLocation((int)this.posicion.getX(),0);
 		}
 	}
 
+	/**
+	 * Retorna la velocidad del enemigo.
+	 * @return Velocidad del enemigo.
+	 */
+	protected int getVelocidadEnemigo() {
+		return this.velocidadEnemigo;
+	}
+	
 	@Override
 	public void moverDerecha() {
 		//No se mueve hacia la derecha.
@@ -104,21 +70,8 @@ public class Movimiento_Enemigo extends Movimiento {
 
 	@Override
 	public boolean puedeMoverse() {
-		return !detenido;
+		return true;
 	}
-	
-	/**
-	 * Indica a la entidad que debe detenerse.
-	 */
-	public void detener() {
-		detenido = true;
-	}
-	
-	/**
-	 * Indica a la entidad que puede moverse.
-	 */
-	public void mover() {
-		detenido = false;
-	}
+
 }
 
