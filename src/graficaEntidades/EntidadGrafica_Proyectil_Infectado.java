@@ -4,7 +4,11 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-public class EntidadGrafica_Proyectil_Infectado extends EntidadGrafica{
+/**
+ * Clase que modela la entidad gráfica del proyectil de los infectados.
+ */
+public class EntidadGrafica_Proyectil_Infectado extends EntidadGrafica {
+	
 	protected final int desplazamientoX = 31;
 	protected final int desplazamientoY = 140;
 	
@@ -29,12 +33,6 @@ public class EntidadGrafica_Proyectil_Infectado extends EntidadGrafica{
 	@Override
 	public void acomodarEtiqueta(int x, int y) {
 		this.etiqueta.setBounds(x+desplazamientoX,y+desplazamientoY,20,20);
-	}
-
-	@Override
-	public void modificarEtiqueta() {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }
