@@ -36,5 +36,16 @@ public abstract class Proyectil extends Entidad {
 		this.poder = poder;
 	}
 	
+	@Override
+	public void morir() {}
+	
+	@Override
+	public void mover() {}
+	
+	@Override
+	public void estadoCritico() {}
+	
+	@Override
+	public void detener() {}
 	
 }
