@@ -4,26 +4,28 @@ import visitor.*;
 
 import movimientoEntidades.*;
 import graficaEntidades.*;
+import logicaJuego.Juego;
 /**
  * Clase que modela un enemigo alpha.
  */
 public class Infectado_Beta extends Infectado{
 	protected final int damageBeta = 10;
 	protected final int vidaBeta = 120;
-	protected EntidadGrafica grafica;
 	
 	/**
 	 * Constructor del enemigo beta.
 	 * @param movimiento Movimiento del enemigo beta.
+	 * @param juego Juego.
 	 */
-	public Infectado_Beta(Movimiento movimiento) {
-		super(movimiento);
+	public Infectado_Beta(Movimiento movimiento,Juego juego) {
+		super(movimiento,juego);
 		this.damageFisico = this.damageBeta;
 		this.vida = this.vidaBeta;
 		this.visitor = new VisitorEnemigoBeta(this);
 		this.grafica = new EntidadGrafica_Enemigo_Beta((int)this.movimiento.getPosicion().getX(),(int)this.movimiento.getPosicion().getY());
 	}
 	
+	@Override
 	public int getVidaMax() {
 		return vidaBeta;
 	}
@@ -33,22 +35,9 @@ public class Infectado_Beta extends Infectado{
 	 * @param v Visitor.
 	 */
 	public void visitar(VisitorEntidad v) {
-		v.visit((Infectado_Beta)this);
+		v.visit(this);
 	}
 
 	@Override
-	public EntidadGrafica getEntidadGrafica() {
-		return grafica;
-	}
-
-	@Override
-	public boolean estadoCritico() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-	@Override
-	public void setEntidadGrafica(EntidadGrafica g) {
-		this.grafica = g;
-	}
+	public void estadoCritico() {}
 }
